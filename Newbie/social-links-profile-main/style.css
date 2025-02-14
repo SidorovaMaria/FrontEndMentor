@@ -1,0 +1,88 @@
+/* Reset & Global Styles */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+@font-face {
+	font-family: "Inter";
+	src: url("./assets/fonts/Inter-VariableFont_slnt\,wght.ttf")
+		format("truetype");
+	font-style: normal;
+}
+/* Design System */
+
+:root {
+	/* Colors */
+	--grey-900: #141414;
+	--grey-800: #1f1f1f;
+	--grey-700: #333333;
+	--green: #c4f82a;
+	--white: #ffffff;
+	--spacing-50: 4px;
+	--spacing-100: 8px;
+	--spacing-150: 12px;
+	--spacing-200: 16px;
+	--spacing-300: 24px;
+	--spacing-500: 40px;
+}
+/* Body Styling  */
+body {
+	background-color: var(--grey-900);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.card {
+	background-color: var(--grey-800);
+	width: 384px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	color: var(--white);
+	line-height: 1.5;
+	font-family: "Inter";
+	text-align: center;
+	border-radius: 20px;
+	padding: var(--spacing-500);
+}
+.card img {
+	width: 88px;
+	border-radius: 100%;
+}
+.card div {
+	padding: var(--spacing-300) 0;
+}
+.card div .name {
+	font-size: 24px;
+	font-weight: 500;
+}
+.card div .location {
+	color: var(--green);
+	font-size: 14px;
+}
+.description {
+	font-weight: 400;
+	font-size: 14px;
+	margin-bottom: var(--spacing-300);
+}
+ul {
+	list-style: none;
+	display: grid;
+	width: 100%;
+	gap: var(--spacing-200);
+}
+li {
+	background-color: var(--grey-700);
+	padding: 12px;
+	border-radius: 5px;
+	font-weight: 500;
+	transition: all 600ms ease-out;
+	font-size: 14px;
+}
+li:hover {
+	background-color: var(--green);
+	color: var(--grey-700);
+}
