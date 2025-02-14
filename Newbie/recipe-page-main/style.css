@@ -1,0 +1,193 @@
+/* Reset & Global Styles */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+/* Design System */
+:root {
+	/* Colors: */
+	--rose-800: #7a284e;
+	--rose-50: #fff7fb;
+	--stone-900: #312e2c;
+	--stone-600: #5f564d;
+	--stone-150: #e3ddd7;
+	--stone-100: #f3e5d7;
+	--brown-800: #854632;
+	--white: #ffffff;
+
+	--spacing-1600: 128px;
+	--spacing-600: 48px;
+	--spacing-500: 40px;
+	--spacing-400: 32px;
+	--spacing-300: 24px;
+	--spacing-200: 16px;
+	--spacing-150: 12px;
+	--spacing-100: 8px;
+}
+li::marker {
+	color: var(--rose-800);
+}
+hr {
+	color: var(--stone-150);
+}
+@font-face {
+	font-family: "Young Serif";
+	src: url("./assets/fonts/young-serif/YoungSerif-Regular.ttf")
+		format("truetype");
+}
+@font-face {
+	font-family: "Outfit";
+	src: url("./assets/fonts/outfit/Outfit-VariableFont_wght.ttf")
+		format("truetype");
+}
+
+body {
+	background-color: var(--stone-100);
+	display: flex;
+	justify-content: center;
+	font-family: "Outfit";
+}
+.card {
+	margin: var(--spacing-1600) auto;
+	width: 736px;
+	padding: var(--spacing-500);
+	background-color: var(--white);
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-500);
+}
+img {
+	width: 100%;
+	border-radius: 10px;
+}
+.recipe {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-300);
+}
+/* Recipe Info Styling */
+.recipe-info {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-300);
+}
+.recipe-info h1 {
+	font-family: "Young Serif";
+	font-size: 40px;
+	font-weight: 400;
+}
+.recipe-info p {
+	font-size: 16px;
+	line-height: 1.5;
+	font-weight: 300;
+}
+/* Preparation time Styling */
+.prep-time {
+	background-color: var(--rose-50);
+	color: var(--stone-600);
+
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-200);
+
+	h3 {
+		color: var(--rose-800);
+		font-weight: 500;
+		font-size: 20px;
+	}
+	ul {
+		list-style-position: inside;
+		display: flex;
+		padding-left: 2px;
+		line-height: 1.5;
+		flex-direction: column;
+		gap: var(--spacing-100);
+	}
+
+	li span {
+		padding-left: 16px;
+		font-weight: 600;
+	}
+}
+
+.recipe div h2 {
+	font-family: "Young Serif";
+	font-size: 28px;
+	color: var(--rose-800);
+}
+.Ingredients {
+	color: var(--stone-600);
+	font-weight: 400;
+	ul {
+		margin-left: var(--spacing-150);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-100);
+		margin-top: var(--spacing-300);
+		padding-left: var(--spacing-150);
+	}
+	li {
+		padding-left: 16px;
+	}
+	li::marker {
+		color: var(--brown-800);
+	}
+}
+
+.instruction {
+	font-size: 16px;
+	color: var(--stone-600);
+	line-height: 1.5;
+
+	ol {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-100);
+		list-style-position: outside;
+		padding-left: var(--spacing-400);
+		margin-top: var(--spacing-300);
+	}
+
+	li {
+		padding-left: var(--spacing-150);
+		text-indent: -var(--spacing-150);
+	}
+
+	span {
+		font-weight: 600;
+	}
+
+	li::marker {
+		font-weight: 600;
+		font-size: 16px;
+	}
+}
+
+.nutrition {
+	> p {
+		padding: var(--spacing-300) 0;
+		color: var(--stone-600);
+		font-weight: 400;
+	}
+	div {
+		display: grid;
+		padding: var(--spacing-150) var(--spacing-400);
+		grid-template-columns: 1fr 1fr;
+		p:nth-child(1) {
+			font-weight: 400;
+			color: var(--stone-600);
+		}
+		p {
+			color: var(--rose-800);
+			font-weight: 600;
+		}
+	}
+}
+
+@media screen and (max-width: 475px) {
+	.card {
+		margin: 0;
+	}
+}
