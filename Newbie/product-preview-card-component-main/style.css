@@ -1,0 +1,149 @@
+/* 🌍 Reset & Global Styles */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+/* 🎨 Design System */
+:root {
+	/* Colors */
+	--black: #1c232b;
+	--grey: #6c7289;
+	--cream: #f2eae2;
+	--white: #ffffff;
+	--green-500: #3d8168;
+	--green-700: #1a4032;
+
+	/* Spacing */
+	--spacing-500: 2.5rem; /* 40px */
+	--spacing-400: 2rem; /* 32px */
+	--spacing-300: 1.5rem; /* 24px */
+	--spacing-200: 1rem; /* 16px */
+	--spacing-100: 0.5rem; /* 8px */
+	--spacing-50: 0.25rem; /* 4px */
+}
+
+/* 🏠 Base Styles */
+body {
+	background-color: var(--cream);
+	font-family: "Montserrat", serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	padding: var(--spacing-500);
+}
+/* Mobile Design*/
+/* 📦 Card */
+.card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 21.25rem; /* 340px */
+	margin: auto;
+	overflow: hidden;
+	background-color: var(--white);
+	border-radius: 10px;
+}
+/* 🖼 Images */
+.mobile-img {
+	width: 100%;
+	display: block;
+	object-fit: contain;
+}
+.desktop-img {
+	display: none;
+}
+
+/* 📃 Content */
+.text {
+	padding: var(--spacing-400);
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-300);
+}
+.text div {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-300);
+	.tag {
+		text-transform: uppercase;
+		line-height: 1.2;
+		letter-spacing: 5px;
+		font-size: 12px;
+		color: var(--grey);
+	}
+	h1 {
+		font-family: "Fraunces", serif;
+		font-weight: 700;
+		font-size: 32px;
+		line-height: 1;
+	}
+	.description {
+		font-size: 14px;
+		line-height: 1.6;
+		color: var(--grey);
+	}
+}
+/* 💰 Price Tag */
+.price-tag {
+	display: flex;
+	gap: var(--spacing-200);
+	align-items: center;
+	align-self: start;
+	font-size: 32px;
+	font-family: "Fraunces", serif;
+	font-weight: 700;
+	color: var(--green-500);
+	span {
+		text-decoration: line-through;
+		font-family: "Montserrat", serif;
+		font-size: 13px;
+		line-height: 1.2;
+		font-weight: 400;
+		color: var(--grey);
+	}
+}
+
+button {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--spacing-100); /* Space between icon and text */
+	background-color: var(--green-500);
+	color: white;
+	padding: var(--spacing-200) var(--spacing-400);
+	border: none;
+	border-radius: 5px;
+	font-size: 14px;
+	font-family: "Montserrat", serif;
+	font-weight: 600;
+	line-height: 1.1;
+	cursor: pointer;
+	transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+	background-color: var(--green-700);
+}
+@media screen and (min-width: 768px) {
+	.card {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 600px;
+		margin: 0;
+		flex-direction: row;
+	}
+	.mobile-img {
+		display: none;
+	}
+	.desktop-img {
+		display: block;
+		width: 300px;
+		height: auto;
+		object-fit: cover;
+	}
+}
