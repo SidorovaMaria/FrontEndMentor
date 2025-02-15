@@ -1,0 +1,172 @@
+/* 🌍 Reset & Global Styles */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+/* 🎨 Design System */
+:root {
+	/* Colors */
+	--grey-500: #4d4f62;
+	--grey-400: #6a7178;
+	--white: #ffffff;
+	--red: #ea5454;
+	--blue: #549ef2;
+	--cyan: #44d3d2;
+	--orange: #fcae4a;
+
+	/* Spacing */
+	--spacing-500: 2.5rem; /* 40px */
+	--spacing-400: 2rem; /* 32 px*/
+	--spacing-300: 1.5rem; /* 24px */
+	--spacing-200: 1rem; /* 16px */
+	--spacing-100: 0.5rem; /* 8px */
+}
+main {
+	font-family: "Poppins", serif;
+	background-color: #fafafa;
+	display: flex;
+	margin: 30px auto;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.intro-text {
+	text-align: center;
+	width: 316px;
+	color: var(--grey-500);
+	h2 {
+		font-weight: 200;
+		font-size: 24px;
+		line-height: 1.4;
+	}
+	h1 {
+		font-weight: 500;
+		font-size: 24px;
+		line-height: 1.5;
+	}
+	p {
+		margin-top: var(--spacing-200);
+		font-size: 15px;
+		line-height: 1.4;
+		letter-spacing: 0.1px;
+		font-weight: 400;
+	}
+}
+.cards {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-400);
+	margin: 60px var(--spacing-400);
+	align-items: center;
+	justify-content: center;
+	div {
+		width: 314px;
+		height: 250px;
+		display: flex;
+		flex-direction: column;
+		background-color: var(--white);
+		padding: var(--spacing-400);
+		/* border-top: 4px solid; */
+		border-radius: 10px;
+		position: relative;
+		overflow: hidden;
+		align-items: flex-start;
+		box-shadow: 0px 15px 30px -11px #83a7d280;
+	}
+	.title {
+		color: var(--grey-500);
+		font-weight: 500;
+		font-size: 1.25rem;
+		line-height: 1.35;
+		margin-bottom: 6px;
+	}
+	.description {
+		color: var(--grey-400);
+		font-size: 13px;
+		letter-spacing: 0.09px;
+		line-height: 1.6;
+		font-weight: 400;
+		margin-bottom: var(--spacing-400);
+	}
+	img {
+		margin-left: auto; /* This pushes the image to the right */
+	}
+}
+.cards div::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+
+	height: 5px;
+}
+.cards div:nth-child(1):before {
+	background-color: var(--cyan);
+}
+.cards div:nth-child(2):before {
+	background-color: var(--red);
+}
+.cards div:nth-child(3):before {
+	background-color: var(--orange);
+}
+.cards div:nth-child(4):before {
+	background-color: var(--blue);
+}
+
+/* Desktop Design */
+@media screen and (min-width: 768px) {
+	.intro-text {
+		margin-top: 80px;
+
+		width: 540px;
+		h2,
+		h1 {
+			font-size: 36px;
+			line-height: 1.4;
+		}
+	}
+	.cards {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		column-gap: var(--spacing-400);
+		row-gap: var(--spacing-400);
+	}
+	.cards div {
+		height: 250px;
+		width: 314px;
+	}
+	.cards div:nth-child(1),
+	.cards div:nth-child(4) {
+		grid-column: 1 / 3;
+		justify-self: center;
+	}
+}
+
+@media screen and (min-width: 1240px) {
+	.cards {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-rows: auto auto;
+	}
+
+	.cards div {
+		height: 250px;
+		width: 350px;
+	}
+	.cards div:nth-child(1) {
+		grid-column: 1;
+		justify-self: center;
+		grid-row: 1/3;
+	}
+	.cards div:nth-child(2),
+	.cards div:nth-child(3) {
+		grid-column: 2;
+	}
+	.cards div:nth-child(4) {
+		grid-column: 3;
+		justify-self: center;
+		grid-row: 1/3;
+	}
+}
