@@ -227,6 +227,7 @@ footer::before {
 	opacity: 80%;
 	z-index: 1;
 }
+/* Tablet Design */
 @media screen and (min-width: 661px) {
 	.hero-mobile img {
 		width: 108%;
@@ -234,6 +235,7 @@ footer::before {
 	}
 	.hero {
 		margin: var(--s-800) 0;
+		width: 100%;
 		.btn-block {
 			flex-direction: row;
 			gap: 17px;
