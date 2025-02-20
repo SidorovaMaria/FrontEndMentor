@@ -1,0 +1,200 @@
+/* 🌍 Reset & Global Styles */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+/* 🎨 Design System */
+:root {
+	--white: #ffffff;
+	--grey-900: #485561;
+	--grey-500: #6e8098;
+	--grey-400: #9daec2;
+	--grey-200: #ecf2f8;
+}
+body {
+	font-family: "Manrope", serif;
+	background-color: var(--grey-200);
+}
+.visible {
+	visibility: visible !important;
+}
+
+.text-1 {
+	font-size: 20px;
+	line-height: 1.3;
+	letter-spacing: 0.25px;
+	font-weight: 700;
+	color: var(--grey-900);
+}
+.text-2 {
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 1.4;
+	letter-spacing: 0.12%;
+	color: var(--grey-500);
+}
+.text-bold {
+	font-weight: 800;
+}
+
+.text-3 {
+	color: var(--grey-400);
+	text-transform: uppercase;
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 1.4;
+	letter-spacing: 0.25em;
+}
+
+/* Mobile Design */
+main {
+	margin: 4rem 1.5rem;
+	border-radius: 10px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--white);
+	box-shadow: 0px 40px 40px -10px #c9d5e180;
+}
+.card-img {
+	background-image: url("./images/drawers.jpg");
+	background-size: cover;
+	width: auto;
+	height: 200px;
+}
+.card-content {
+	position: relative;
+	padding: 2rem 30px 18px;
+	gap: 24px;
+	display: flex;
+	flex-direction: column;
+}
+
+.card-author {
+	margin-top: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	align-items: center;
+	.avatar {
+		width: 40px;
+		height: 40px;
+		border-radius: 50px;
+	}
+	.author {
+		display: flex;
+		gap: 16px;
+		align-items: center;
+	}
+	.text-2 {
+		color: var(--grey-900) !important;
+	}
+	.date {
+		color: var(--grey-400) !important;
+	}
+}
+#share-btn {
+	width: 32px;
+	height: 32px;
+	padding: 8px;
+	border-radius: 30px;
+	z-index: 60;
+	border: none;
+	position: relative;
+	background-color: var(--grey-200);
+}
+
+#share-options img {
+	width: 20px;
+	height: 20px;
+}
+#share-options {
+	visibility: hidden;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	left: 0;
+	z-index: 10;
+	background-color: var(--grey-900);
+	display: flex;
+	padding: 28px 32px;
+	gap: 24px;
+}
+.share-icons {
+	display: flex;
+	gap: 1rem;
+}
+
+/* Tablet Design */
+@media screen and (min-width: 750px) {
+	main {
+		display: flex;
+		flex-direction: row;
+		max-width: 608px;
+		margin: auto;
+		overflow: visible; /* Ensure no content is hidden */
+		transform: translate(0, 50%);
+	}
+
+	.card-img {
+		width: 229px;
+		height: auto;
+		flex-shrink: 0;
+	}
+
+	.card-content {
+		padding: 41px 36px 41px 32px;
+		overflow: visible;
+	}
+
+	.card-author {
+		margin-top: 0;
+	}
+
+	.share {
+		position: relative;
+		z-index: 50;
+		overflow: visible; /* Ensure dropdown is not clipped */
+	}
+
+	#share-options {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		bottom: 170%;
+		width: max-content;
+		height: fit-content;
+		padding: 18px 38px;
+		border-radius: 10px;
+		background-color: var(--grey-900);
+		z-index: 10;
+		box-shadow: 0px 10px 10px #c9d5e178;
+	}
+	#share-options::before {
+		content: "";
+		position: absolute;
+		width: 17px;
+		height: 17px;
+		z-index: 60;
+		transform: rotate(45deg);
+		background-color: var(--grey-900);
+		bottom: -6px;
+		left: 46%;
+	}
+}
+
+/* Desktop design */
+@media screen and (min-width: 1440px) {
+	main {
+		max-width: 720px;
+	}
+	.card-img {
+		width: 285px;
+		height: auto;
+		flex-shrink: 0;
+	}
+	.card-content {
+		padding: 30px 40px;
+	}
+}
