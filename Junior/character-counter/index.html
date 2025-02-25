@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/design/reset.css">
+    <link rel="stylesheet" href="./assets/design/main-style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+    <!-- Material ICONS  -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+    <script defer src="./main.js"></script>
+    <title>Frontend Mentor | Character counter</title>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="./assets/images/logo-light-theme.svg" alt="Light Logo" class="logo-light" />
+                <img src="./assets/images/logo-dark-theme.svg" alt="Dark Logo" class="logo-dark" />
+            </div>
+            <div class="toggle-theme">
+                <img src="./assets/images/icon-sun.svg" alt="Sun icon" class="toggle-dark" />
+                <img src="./assets/images/icon-moon.svg" alt="Moon icon" class="toggle-light" />
+            </div>
+        </header>
+        <h1 class="heading text-preset-1">Analyze your text in real-time.</h1>
+        <section class="input">
+            <div class="input-container">
+                <textarea id="text-input" placeholder="Start typing here… (or paste your text)"
+                    class="text-preset-3"></textarea>
+                <p class="info text-preset-4">
+                    <img class="icon-info" src="assets/images/icon-info.svg" alt="icon-info" />
+                    Limit reached! Your text exceeds&nbsp;
+                    <span class="max-characters"> </span>&nbsp; characters.
+                </p>
+            </div>
+            <div class="input-options">
+                <div class="option">
+                    <label for="exclude-spaces">
+                        <input type="checkbox" name="exclude-spaces" id="exclude-spaces"><span></span></label>
+                    <p class="text-preset-4">Exclude Spaces</p>
+                </div>
+                <div class="option">
+                    <label for="char-limit">
+                        <input type="checkbox" id="char-limit" name="limit" />
+                        <span></span>
+                    </label>
+                    <p class="text-preset-4" s> Set Character Limit</p>
+                    <input class="limit-input text-preset-4" type="number" id="limit-input" />
+                </div>
+                <div class=" option reading-time text-preset-4">
+                    Approx. reading time: <span id="reading-time-value"></span> minute
+                </div>
+            </div>
+        </section>
+        <section class="counted-values">
+            <div id='result-char'>
+                <h3 class="text-preset-1" id="num-char">00</h3>
+                <p class="text-preset-3"> </p>
+            </div>
+            <div id='result-word-count'>
+                <h3 class="text-preset-1" id="num-word-count">00</h3>
+                <p class="text-preset-3"> Word Count</p>
+            </div>
+            <div id='result-sent-count'>
+                <h3 class="text-preset-1" id="num-sent-count">00</h3>
+                <p class="text-preset-3"> Sentence Count</p>
+            </div>
+        </section>
+        <section class="letter-density">
+            <h2 class="text-preset-2">Letter Density</h2>
+            <p class="no-characters text-preset-4"> No characters found. Start typing to see letter density.</p>
+            <div id="letters">
+            </div>
+            <p class="show text-preset-3">See More <span class="material-symbols-outlined arrow flip">
+                    keyboard_arrow_down
+                </span></p>
+        </section>
+
+
+    </div>
+
+</body>
+
+</html>
