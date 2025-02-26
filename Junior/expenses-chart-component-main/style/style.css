@@ -1,0 +1,146 @@
+:root {
+	--white: #ffffff;
+	--card-white: #fffbf6;
+	--cream-bg: #f8e9dd;
+	--brown-500: #92857a;
+	--brown-900: #382314;
+	--cyan: #76b5bc;
+	--red: #ec755d;
+	--bar-height: 100px;
+}
+html {
+	font-family: "DM Sans", serif;
+	background-color: var(--cream-bg);
+}
+.heading-XL,
+.heading-L {
+	font-weight: 800;
+	font-size: 30px;
+	line-height: auto;
+}
+.heading-L {
+	font-size: 24px;
+}
+.text-body {
+	font-size: 18px;
+	font-weight: 400;
+	&.bold {
+		font-weight: 800;
+	}
+}
+.text-caption {
+	font-size: 15px;
+	font-weight: 400;
+	color: var(--brown-500);
+}
+.container {
+	margin: 67px 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+.balance {
+	background-color: var(--red);
+	color: var(--white);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px;
+	border-radius: 10px;
+	h4 {
+		color: var(--white);
+	}
+	img {
+		width: 60px;
+	}
+}
+.spending {
+	border-radius: 10px;
+	padding: 24px 20px;
+	background-color: var(--card-white);
+	color: var(--brown-900);
+	h1 {
+		margin-bottom: 52px;
+	}
+	hr {
+		border: 1px solid #f8e9dd;
+		margin-bottom: 1.5rem;
+	}
+}
+.graph {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 1.5rem;
+	gap: 18px;
+	flex-grow: 1;
+	align-items: baseline;
+	text-align: center;
+	.bar-container {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		flex-grow: 1;
+	}
+	.amount {
+		position: absolute;
+		background-color: var(--brown-900);
+		color: var(--white);
+		padding: 4px;
+		top: -38px;
+		font-size: 14px;
+		border-radius: 5px;
+		z-index: 30;
+		display: none;
+	}
+	.bar {
+		height: calc(var(--bar-height) * 500);
+		border-radius: 5px;
+		max-height: 200px;
+		background-color: var(--red);
+		&:hover {
+			background-color: var(--cyan);
+		}
+	}
+	.bar:hover .amount {
+		display: block;
+	}
+}
+.total-spending {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 20px;
+	align-items: center;
+	.total-increase {
+		text-align: right;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.container {
+		max-width: 540px;
+		width: 540px;
+		position: absolute;
+		top: 25%;
+		left: 50%;
+		transform: translate(-50%, -25%);
+	}
+	.heading-XL {
+		font-size: 48px;
+	}
+	.heading-L {
+		font-size: 32px;
+	}
+	.text-body {
+		font-size: 18px;
+	}
+	.graph {
+		.bar {
+			height: calc(var(--bar-height) * 800);
+		}
+		.amount {
+			left: 3%;
+		}
+	}
+}
+@media screen and (min-width: 1240px) {
+}
