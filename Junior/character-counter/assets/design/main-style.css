@@ -237,10 +237,9 @@ section.letter-density {
 	.no-characters {
 		margin-top: 20px;
 	}
-	.show {
-		display: flex;
-		gap: 8px;
-		align-items: center;
+	.arrow {
+		margin-left: 8px;
+		vertical-align: middle;
 	}
 	.arrow.flip {
 		transform: rotate(180deg);
