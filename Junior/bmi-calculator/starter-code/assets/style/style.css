@@ -87,7 +87,7 @@ body {
 	align-items: center;
 }
 header img {
-	justify-self: center;
+	margin: 0 auto;
 	width: 40px;
 	height: 40px;
 }
@@ -357,6 +357,9 @@ header img {
 	.blue-bg {
 		max-width: 1002px;
 		max-height: 737px;
+	}
+	header img {
+		margin: 0;
 	}
 
 	.hero {

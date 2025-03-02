@@ -1,6 +1,6 @@
-# Frontend Mentor - Body Mass Index Calculator solution
+# Frontend Mentor - Tip calculator app solution
 
-This is a solution to the [Body Mass Index Calculator challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/body-mass-index-calculator-brrBkfSz1T). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is a solution to the [Tip calculator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/tip-calculator-app-ugJNGbJUX). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents
 
@@ -24,11 +24,9 @@ This is a solution to the [Body Mass Index Calculator challenge on Frontend Ment
 
 Users should be able to:
 
-- Select whether they want to use metric or imperial units
-- Enter their height and weight
-- See their BMI result, with their weight classification and healthy weight range
-- View the optimal layout for the interface depending on their device's screen size
-- See hover and focus states for all interactive elements on the page
+- View the optimal layout for the app depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Calculate the correct tip and total cost of the bill per person
 
 ### Screenshot
 
