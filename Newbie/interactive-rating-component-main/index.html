@@ -17,15 +17,17 @@
 </head>
 
 <body>
-    <main class="card review  ">
+    <main class="card review">
         <div class="icon">
-            <img src="./images/icon-star.svg" alt="Icon Star" />
+            <img src="./images/icon-star.svg" alt="Star icon">
         </div>
         <section class="content">
             <h2 class="heading-L">How did we do?</h2>
-            <p class="feedback text-body"> Please let us know how we did with your support request. All feedback is
-                appreciated
-                to help us improve our offering!</p>
+            <p class="feedback text-body">
+                Please let us know how we did with your support request. All feedback is appreciated
+                to help us improve our offering!
+            </p>
+
             <form>
                 <div class="ratings">
                     <button value="1" type="button" name="rating-value" class="rating">1</button>
@@ -39,10 +41,14 @@
         </section>
     </main>
     <main class="card result hide">
-        <img src="./images/illustration-thank-you.svg" alt="'Ilustration thank you" class="img-thank-you" />
+        <img src="./images/illustration-thank-you.svg" alt="Illustration of thank you message" class="img-thank-you" />
+
         <aside>
-            <p class="selected-rating">You selected <span id="chosen-rating"></span> out of 5</p>
+            <p class="selected-rating" aria-live="polite">
+                You selected <span id="chosen-rating"></span> out of 5
+            </p>
         </aside>
+
         <section class="thank-you">
             <h1>Thank you!</h1>
             <p class="text-body">

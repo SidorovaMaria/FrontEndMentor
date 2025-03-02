@@ -34,6 +34,7 @@ body {
 	font-family: "Overpass", serif;
 	background-color: var(--very-dark-blue);
 }
+
 .card {
 	background: radial-gradient(
 		var(--gradient-black-from),
