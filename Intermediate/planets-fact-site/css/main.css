@@ -408,7 +408,7 @@ nav .mobile-menu.active .mobile-link .chevron {
 		display: grid;
 		grid-template-columns: 6fr 4fr;
 		align-items: center;
-		margin: 147px auto 87px auto;
+		margin: 70px auto 87px auto;
 	}
 	.planet-content .planet-topic h1 {
 		font-size: 80px;
