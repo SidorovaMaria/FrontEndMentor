@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+	--color-pale-red: #f87070;
+	--color-bright-blue: #70f3f8;
+	--color-violet: #dbb1f8;
+	--color-grey: #d7e0ff;
+	--color-blue-1e: #1e213f;
+	--color-blue-16: #161932;
+	--color-white: #ffffff;
+	--color-washed-white: #eff1fa;
+	--font-kumbh: "Kumbh Sans", sans-serif;
+	--font-roboto: "Roboto Slab", serif;
+	--font-mono: "Space Mono", monospace;
+}
+body {
+	@apply bg-blue-1e;
+}
+@layer components {
+	h1 {
+		@apply font-bold text-[100px] leading-[120px] tracking-[-5px];
+	}
+	h2 {
+		@apply font-bold text-[28px] leading-[34px];
+	}
+	h3 {
+		@apply font-bold text-base leading-[19px] uppercase tracking-[15px];
+	}
+	h4 {
+		@apply font-bold text-[13px] leading-4 tracking-[5px] uppercase;
+	}
+	p.one,
+	li.one {
+		@apply font-bold text-[14px] leading-[18px] opacity-60;
+	}
+	p.two {
+		@apply font-bold text-[12px] leading-[14px] opacity-40;
+	}
+	li.two {
+		@apply font-bold text-[12px] md:text-[14px] leading-[14px] text-grey/40 py-4 px-6 rounded-[26.5px] cursor-pointer;
+	}
+	.apply-btn {
+		@apply relative w-[140px] h-[53px] flex justify-center items-center rounded-[26px] bottom-5 font-bold mx-auto;
+	}
+	.kumbh {
+		* {
+			@apply font-kumbh;
+		}
+	}
+	.roboto {
+		* {
+			@apply font-roboto;
+		}
+	}
+	.mono {
+		* {
+			@apply font-mono;
+		}
+	}
+	.outer-circle {
+		@apply h-[300px] w-[300px] md:w-[410px] md:h-[410px] rounded-full p-4 md:p-5 bg-gradient-to-tl from-[#2e325a] to-[#0e112a] to-80%  mx-auto mt-12 relative;
+		box-shadow: -50px -50px 100px #272c5a, 50px 50px 100px #121530;
+	}
+	.time-number {
+		@apply text-[80px] md:text-[100px] font-bold tracking-[-4px] md:tracking-[-5px] leading-[100px] text-grey;
+	}
+	.time-btn {
+		@apply text-[14px] md:text-base font-bold tracking-[5px] text-grey;
+	}
+	.time-btn button:hover {
+		color: var(--text-color) !important;
+	}
+
+	.time-btn p,
+	.time-btn button {
+		@apply uppercase;
+	}
+	.time-input {
+		@apply flex justify-between items-center md:flex-col md:items-start md:gap-[10px];
+	}
+	.time-input label {
+		@apply text-[12px] font-bold text-blue-1e/40;
+	}
+	.time-input .input {
+		@apply bg-washed-white flex rounded-[10px] w-[140px] justify-between items-center h-10 font-semibold px-4 text-[14px];
+	}
+	.time-input input {
+		@apply [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none;
+	}
+}
