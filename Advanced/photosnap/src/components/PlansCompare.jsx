@@ -1,6 +1,6 @@
 import React from "react";
 import { plansDescription } from "../data/data";
-import check from "../../public/assets/pricing/desktop/check.svg";
+import check from "/assets/pricing/desktop/check.svg";
 
 const PlansCompare = () => {
 	return (
