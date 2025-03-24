@@ -1,0 +1,111 @@
+@import "tailwindcss";
+@theme {
+	--color-black: #000000;
+	--color-light-grey: #dfdfdf;
+	--color-white: #ffffff;
+	--font-DMSans: "DM Sans", sans-serif;
+}
+body {
+	@apply font-DMSans;
+}
+
+@layer components {
+	.gradient {
+		@apply bg-gradient-to-tr from-[#ffc593] via-[#bc7198] to-[#5a77ff];
+	}
+	.h1 {
+		@apply text-[32px] md:text-[40px] leading-[40px] md:leading-[48px] tracking-[3.33px] md:tracking-[4.17px] font-semibold;
+	}
+	.h2 {
+		@apply text-2xl leading-[25px] font-bold;
+	}
+	.h3 {
+		@apply text-[18px] leading-[18px] font-bold;
+	}
+	.h4 {
+		@apply text-xs uppercase leading-[16px] tracking-[2px] font-bold;
+	}
+	.mobile-h4 {
+		@apply text-[15px] md:text-xs md:leading-[16px]  uppercase leading-[20px] font-bold tracking-[2.5px] md:tracking-[2px];
+	}
+	.p {
+		@apply font-normal text-[15px] leading-[25px];
+	}
+	.btn-1 {
+		@apply py-3 px-6 bg-black hover:bg-light-grey text-white hover:text-black transition-all ease-linear duration-300 font-bold;
+	}
+	.btn-3 {
+		@apply py-3 px-6 bg-white hover:bg-light-grey text-black hover:text-black transition-colors font-semibold;
+	}
+	.btn-2 {
+		@apply text-black relative inline-flex items-center font-semibold tracking-[2px];
+	}
+	.btn-4 {
+		@apply text-white relative inline-flex items-center font-semibold tracking-[2px];
+	}
+	/* Arrow */
+	.btn-2::after {
+		content: "";
+		position: relative;
+		left: 16px;
+		width: 42px;
+		height: 12px;
+		background: url("/assets/shared/desktop/arrow.svg") no-repeat center /
+			contain;
+	}
+	.btn-4::after {
+		content: "";
+		position: relative;
+		left: 16px;
+		width: 42px;
+		height: 12px;
+		background: url("/assets/shared/desktop/arrowWhite.svg") no-repeat
+			center / contain;
+	}
+	/* Underline effect only under the text */
+	.btn-text,
+	.btn-text {
+		position: relative;
+	}
+
+	.btn-text::before,
+	.btn-text::before {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		width: 0;
+		height: 1px;
+		background: currentColor;
+		transition: all 0.3s ease-in-out;
+		transform: translateX(-50%) scaleX(0);
+		transform-origin: center;
+	}
+	.btn-2:hover .btn-text::before,
+	.btn-4:hover .btn-text::before,
+	.btn-text:hover::before {
+		width: 100%;
+		transform: translateX(-50%) scaleX(1);
+	}
+	.menu-line {
+		@apply h-[1px] w-5 bg-black transition-all duration-300;
+	}
+	.nav-box {
+		@apply p-8 md:p-0 absolute md:static top-[72px] left-0 w-full md:flex md:items-center md:gap-[51px] max-w-[75%] md:justify-end bg-white transition-all ease-in-out duration-500;
+	}
+	.nab-box-n {
+		@apply py-8 absolute top-[72px] left-0 w-full bg-white transition-all ease-in-out duration-500 md:contents;
+	}
+	.line-1.open {
+		@apply relative -translate-y-[2px];
+	}
+	.line-2.open {
+		@apply relative translate-y-[2px];
+	}
+	.line-1.close {
+		@apply relative -rotate-45;
+	}
+	.line-2.close {
+		@apply relative rotate-45 -translate-y-[0.7px];
+	}
+}
