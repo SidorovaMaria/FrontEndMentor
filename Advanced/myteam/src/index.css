@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+	--color-blue-midnight: #014e56;
+	--color-light-coral: #f67e7e;
+	--color-white: #ffffff;
+	--color-blue-rapture: #79c8c7;
+	--color-blue-police: #2c6269;
+	--color-green-deep-jungle: #004047;
+	--color-green-sacramento: #012f34;
+	--color-green-dark: #002529;
+	--font-livvic: "Livvic", sans-serif;
+	--radius-24: 24px;
+	--breakpoint-xl: 90rem;
+}
+
+body {
+	@apply font-livvic bg-blue-midnight text-white;
+}
+@layer components {
+	h1 {
+		@apply text-[40px] md:text-[64px] xl:text-[100px] leading-[40px] md:leading-[56px] xl:leading-[100px] font-bold;
+	}
+	h2 {
+		@apply font-bold text-[32px] leading-[32px] xl:text-[48px] xl:leading-[48px];
+	}
+	h3 {
+		@apply text-[32px] leading-12 font-bold;
+	}
+	p,
+	li {
+		@apply font-semibold text-[15px] leading-[28px] xl:text-[18px];
+	}
+	p.tight {
+		@apply text-[15px] leading-[25px];
+	}
+	.btn-primary {
+		@apply border-[2px] font-semibold rounded-24 disabled:opacity-25 pt-[9px] pb-[11px]  pl-8 pr-[33px];
+	}
+	.btn-primary.light {
+		@apply border-white text-white hover:bg-white  hover:text-green-dark;
+	}
+	.btn-primary.dark {
+		@apply border-green-sacramento text-green-sacramento hover:text-white hover:bg-green-sacramento;
+	}
+	.btn-secondary {
+		@apply rounded-24 text-green-dark bg-white hover:text-green-dark hover:bg-blue-rapture disabled:opacity-25 pt-[9px] pb-[11px]  pl-8 pr-[33px] font-semibold text-[18px] leading-[28px];
+	}
+	section {
+		@apply px-6 md:px-[98px] xl:px-[165px] overflow-hidden;
+	}
+	.input-area {
+		@apply border-b-[1.5px] border-white w-full placeholder:text-white/60 font-semibold text-[15px] leading-[25px] pl-[14px] pb-4 outline-none;
+	}
+}
