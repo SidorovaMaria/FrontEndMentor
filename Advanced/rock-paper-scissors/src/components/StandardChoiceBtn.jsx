@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPlayerChoice } from "../features/GameSlice";
+import { setPlayerChoice } from "../features/gameSlice";
 
 const StandardChoiceBtn = ({ position, icon, borderColor, shadowColor }) => {
 	const dispatch = useDispatch();

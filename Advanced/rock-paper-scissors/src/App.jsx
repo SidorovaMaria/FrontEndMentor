@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import ScoreDisplay from "./components/ScoreDisplay";
 
-import { changeMode } from "./features/GameSlice";
+import { changeMode } from "./features/gameSlice";
 import GameStandard from "./components/GameStandard";
 import ExtendedChoice from "./components/ExtendedChoice";
 import { motion } from "framer-motion";
@@ -79,7 +79,7 @@ function App() {
 							Rules
 						</h2>
 						<img
-							src="../public/assets/icon-close.svg"
+							src="/assets/icon-close.svg"
 							alt="Close btn"
 							className="absolute bottom-[65px] left-[50%] -translate-y-[50%] lg:static lg:bottom-auto lg:left-auto lg:translate-y-0 mt-[12px]"
 							onClick={() => setOpenModal(!openModal)}
@@ -87,15 +87,12 @@ function App() {
 					</div>
 					{state.mode === "standard" ? (
 						<img
-							src="../public/assets/image-rules.svg"
+							src="/assets/image-rules.svg"
 							alt="rules"
 							className="w-[305px]"
 						/>
 					) : (
-						<img
-							src="../public/assets/image-rules-bonus.svg"
-							alt="rules"
-						/>
+						<img src="/assets/image-rules-bonus.svg" alt="rules" />
 					)}
 				</div>
 			</div>

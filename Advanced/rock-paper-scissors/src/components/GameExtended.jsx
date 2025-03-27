@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import GameScreen from "./GameScreen";
 
 const GameExtended = () => {
-	const state = useSelector((state) => state.game); // Assuming your playerChoice is here
+	const state = useSelector((state) => state.game);
 	const { playerChoice } = state;
 
 	return (
@@ -14,7 +14,6 @@ const GameExtended = () => {
 				style={{ position: "relative" }}
 				className="w-[311px] lg:w-[938px] h-[305px] lg:h-[430px] flex justify-center items-center mx-auto relative mt-[75px] lg:mt-6"
 			>
-				{/* StandardPicker is shown when no choice is made */}
 				<motion.div
 					initial={{ opacity: 1, zIndex: 1 }}
 					animate={{

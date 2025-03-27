@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signFeatures } from "../features/helperFunctions";
 import ChosenBtn from "./ChosenBtn";
-import { getComputerChoice, play, resetTurn } from "../features/GameSlice";
+import { getComputerChoice, play, resetTurn } from "../features/gameSlice";
 import { motion, AnimatePresence } from "framer-motion";
 
 const GameScreen = () => {
@@ -13,43 +13,36 @@ const GameScreen = () => {
 	const [showWinner, setShowWinner] = useState(false);
 	console.log(showComputerChoice, "comp");
 
-	// Fetch computer choice with delay
 	useEffect(() => {
 		setShowComputerChoice(false);
 		if (state.playerChoice) {
 			dispatch(getComputerChoice());
 
-			// Trigger play after 4 seconds
 			const playTimer = setTimeout(() => {
 				dispatch(play());
 			}, 4000);
 
-			// Cleanup playTimer
 			return () => clearTimeout(playTimer);
 		}
 	}, [state.playerChoice, dispatch]);
 
 	useEffect(() => {
 		if (state.playerChoice) {
-			// Show black circle immediately, then switch to the choice
 			const blackCircleTimer = setTimeout(() => {
-				setShowBlackCircle(false); // Hide black circle after 2 seconds
-				setShowComputerChoice(true); // Show computer choice
+				setShowBlackCircle(false);
+				setShowComputerChoice(true);
 			}, 2000);
 
-			// Cleanup blackCircleTimer
 			return () => clearTimeout(blackCircleTimer);
 		}
 	}, [state.playerChoice]);
 
-	// Effect 3: Show the winner after 4 seconds
 	useEffect(() => {
 		if (state.playerChoice) {
 			const showWinnerTimer = setTimeout(() => {
 				setShowWinner(true);
 			}, 4000);
 
-			// Cleanup showWinnerTimer
 			return () => clearTimeout(showWinnerTimer);
 		}
 	}, [state.playerChoice]);
@@ -57,7 +50,6 @@ const GameScreen = () => {
 	const choice = state.playerChoice ? signFeatures[state.playerChoice] : null;
 	console.log(choice);
 
-	// Fallback if no player choice is made
 	if (!state.playerChoice) {
 		return <div></div>;
 	}
