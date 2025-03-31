@@ -84,26 +84,26 @@ export const NavLinks = [
 	{
 		title: "Overview",
 		link: "/",
-		linkIcon: "../../public/assets/images/icon-nav-overview.svg",
+		linkIcon: "/assets/images/icon-nav-overview.svg",
 	},
 	{
 		title: "Transactions",
 		link: "/transactions",
-		linkIcon: "../../public/assets/images/icon-nav-transactions.svg",
+		linkIcon: "/assets/images/icon-nav-transactions.svg",
 	},
 	{
 		title: "Budgets",
 		link: "/budgets",
-		linkIcon: "../../public/assets/images/icon-nav-budgets.svg",
+		linkIcon: "/assets/images/icon-nav-budgets.svg",
 	},
 	{
 		title: "Pots",
 		link: "/pots",
-		linkIcon: "../../public/assets/images/icon-nav-pots.svg",
+		linkIcon: "/assets/images/icon-nav-pots.svg",
 	},
 	{
 		title: "Reccuring Bills",
 		link: "/recurring-bills",
-		linkIcon: "../../public/assets/images/icon-nav-recurring-bills.svg",
+		linkIcon: "/assets/images/icon-nav-recurring-bills.svg",
 	},
 ];

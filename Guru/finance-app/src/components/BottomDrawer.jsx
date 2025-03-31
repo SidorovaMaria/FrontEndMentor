@@ -31,13 +31,13 @@ const BottomDrawer = () => {
 									}`}
 								/>
 							</div>
-							<h5
-								className={`bold hidden md:block ${
+							<p
+								className={`bold hidden md:block text-5 ${
 									isActive ? "text-grey-900" : "text-grey-300"
 								}`}
 							>
 								{link.title}
-							</h5>
+							</p>
 						</div>
 						<div
 							className={`w-full h-1 bg-secondary-green absolute left-0 bottom-0 ${

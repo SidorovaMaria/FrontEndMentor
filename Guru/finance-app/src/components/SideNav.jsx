@@ -16,12 +16,12 @@ const SideNav = () => {
 			<NavLink to="/">
 				<div className="py-10 px-8">
 					<img
-						src="../../public/assets/images/logo-large.svg"
+						src="/assets/images/logo-large.svg"
 						alt="Logo finance"
 						className={`${minimize ? "hidden" : "block"}`}
 					/>
 					<img
-						src="../../public/assets/images/logo-small.svg"
+						src="/assets/images/logo-small.svg"
 						alt="Logo finance"
 						className={`${minimize ? "block" : "hidden"}`}
 					/>
@@ -50,7 +50,7 @@ const SideNav = () => {
 								/>
 							</div>
 							<h3
-								className={`${
+								className={` text-3 ${
 									isActive ? "text-grey-900" : "text-grey-300"
 								} ${minimize ? "hidden" : ""}`}
 							>
