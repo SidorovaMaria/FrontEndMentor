@@ -22,7 +22,7 @@ const Pots = () => {
 					+ Add New Pot
 				</button>
 			</header>
-			<section className=" my-8 grid grid-cols-1 gap-6 my-8 lg:grid-cols-2">
+			<section className=" my-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
 				{pots.map((pot) => (
 					<PotBreakdown pot={pot} key={pot.name} />
 				))}
