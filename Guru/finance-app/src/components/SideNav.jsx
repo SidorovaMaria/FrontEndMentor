@@ -66,7 +66,7 @@ const SideNav = () => {
 				})}
 			</div>
 			<button
-				className="flex items-center gap-4 group py-4 px-8 mt-auto  mb-6"
+				className="flex items-center gap-4 group py-4 px-8 mt-[250px]  mb-6"
 				onClick={() => setMinimize(!minimize)}
 			>
 				<ReactSVG

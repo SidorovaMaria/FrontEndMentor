@@ -54,7 +54,7 @@ const Pagination = ({ page, count, handleChange }) => {
 			<div className="flex gap-2 ">
 				{mobilePagination.map((num, index) => (
 					<button
-						className={`flex justify-center items-center w-10 h-10  rounded-8 text-4 ${
+						className={`flex justify-center items-center w-10 h-10  rounded-8 text-4 border border-beige-500 ${
 							num === page
 								? "bg-grey-900 text-white"
 								: "not-disabled:hover:bg-beige-500 not-disabled:hover:text-white"

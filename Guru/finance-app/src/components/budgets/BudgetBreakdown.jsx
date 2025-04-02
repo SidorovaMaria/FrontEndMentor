@@ -1,9 +1,11 @@
 import React from "react";
+import { motion } from "motion/react";
 import LatestSpending from "./LatestSpending";
+import DeleteEditOption from "./DeleteEditOption";
 
 const BudgetBreakdown = ({ budget }) => {
 	return (
-		<div className="my-6 mx-5 flex flex-col gap-5 ">
+		<div className="my-6 mx-5 flex flex-col gap-5 md:m-8 md:gap-6 ">
 			{/* Category Title */}
 			<div className="flex items-center gap-4">
 				<div
@@ -11,7 +13,7 @@ const BudgetBreakdown = ({ budget }) => {
 					style={{ backgroundColor: `${budget.theme}` }}
 				></div>
 				<p className="text-2">{budget.category}</p>
-				<div className="w-4 h-4 flex justify-center items-center group ml-auto relative"></div>
+				<DeleteEditOption budget={budget} />
 			</div>
 
 			{/* Breakdown */}
@@ -19,13 +21,19 @@ const BudgetBreakdown = ({ budget }) => {
 				<p className="text-4 text-grey-500">
 					Maximum of ${budget.maximum.toFixed(2)}
 				</p>
-				<progress
-					className="w-full rounded-[4px] appearance-none "
-					id="progress-bar"
-					value={budget.totalSpending}
-					max={budget.maximum}
-					style={{ "--progress-color": budget.theme }}
-				></progress>
+				<div className="relative w-full h-6 -z-10 bg-gray-200 rounded-[4px] overflow-hidden">
+					<motion.div
+						className="h-full rounded-[4px]"
+						initial={{ width: "0%" }}
+						animate={{
+							width: `${
+								(budget.totalSpending / budget.maximum) * 100
+							}%`,
+						}}
+						transition={{ duration: 1, ease: "easeInOut" }}
+						style={{ backgroundColor: budget.theme }}
+					/>
+				</div>
 				<div className="grid grid-cols-2 relative gap-x-4">
 					<div className="flex flex-col gap-1 items-start pl-4">
 						<p className="text-5 text-grey-500">Spent</p>

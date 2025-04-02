@@ -37,29 +37,33 @@ const LatestSpending = ({ budget }) => {
 			</div>
 			<div className="flex flex-col gap-3">
 				{allSpending.slice(0, 3).map((spend, index) => (
-					<div
-						key={index}
-						className="flex justify-between items-center"
-					>
-						<div className="flex items-center gap-4">
-							<img
-								src={spend.avatar}
-								alt="Spending Avatar"
-								className="w-8 h-8 hidden md:block rounded-full"
-							/>
-							<h5 className="text-5 bold text-grey-900">
-								{spend.name}
-							</h5>
+					<React.Fragment key={index}>
+						<div className="flex justify-between items-center ">
+							<div className="flex items-center gap-4">
+								<img
+									src={spend.avatar}
+									alt="Spending Avatar"
+									className="w-8 h-8 hidden md:block rounded-full"
+								/>
+								<h5 className="text-5 bold text-grey-900">
+									{spend.name}
+								</h5>
+							</div>
+							<div className="flex flex-col items-end gap-1">
+								<p className="text-5 bold">
+									{formatAmount(spend.amount)}
+								</p>
+								<p className="text-grey-500 text-5">
+									{formatDate(spend.date)}
+								</p>
+							</div>
 						</div>
-						<div className="flex flex-col items-end gap-1">
-							<p className="text-5 bold">
-								{formatAmount(spend.amount)}
-							</p>
-							<p className="text-grey-500 text-5">
-								{formatDate(spend.date)}
-							</p>
-						</div>
-					</div>
+						<hr
+							className={`w-full border-grey-500/15 h-[1px] ${
+								index < 2 ? "" : "hidden"
+							}`}
+						></hr>
+					</React.Fragment>
 				))}
 			</div>
 			<Dialog
