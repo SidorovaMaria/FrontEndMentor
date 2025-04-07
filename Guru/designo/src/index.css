@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+	--color-peach: #e7816b;
+	--color-peach-light: #ffad9b;
+	--color-black: #1d1c1e;
+	--color-dark-grey: #333136;
+	--color-white: #ffffff;
+	--color-grey-light: #f1f3f5;
+	--font-jost: "Jost", sans-serif;
+	--radius-8: 8px;
+	--radius-15: 15px;
+	--radois-5xl: 42px;
+	--breakpoint-lg: 74rem;
+}
+body {
+	@apply font-jost text-white relative;
+}
+@layer components {
+	.text-1 {
+		@apply text-[32px] leading-9 md:text-[48px] md:leading-14 font-medium;
+	}
+	.text-2 {
+		@apply text-[28px] leading-[36px] tracking-[1.4px] uppercase font-medium md:text-[40px] md:leading-12 md:tracking-[2px];
+	}
+	.text-3 {
+		@apply font-medium text-[20px] leading-[26px] tracking-[5px];
+	}
+	.text-4 {
+		@apply text-[15px] leading-[25px] font-normal md:text-base md:leading-[26px];
+	}
+
+	.btn-light {
+		@apply bg-white text-dark-grey rounded-8  py-4 px-6 hover:bg-peach-light hover:text-white transition-all ease-in-out duration-200;
+	}
+	.text-nav {
+		@apply text-[14px] leading-[14px] tracking-[2px] font-normal uppercase text-dark-grey relative;
+	}
+	.text-footer {
+		@apply text-[14px] leading-[14px] tracking-[2px] font-normal uppercase;
+	}
+	.text-mobile-nav {
+		@apply text-[24px] leading-[25px] tracking-[2px] font-normal uppercase text-white relative w-fit;
+	}
+	.nav-underline {
+		@apply relative;
+	}
+
+	.nav-underline::after {
+		content: "";
+		position: absolute;
+		bottom: -4px;
+		width: 0%;
+		height: 4px;
+		background-color: #e7816b;
+		opacity: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		border-radius: 999px;
+		transition: width 0.3s ease, opacity 0.3s ease, left 0.3s ease;
+	}
+	.text-mobile-nav::after {
+		content: "";
+		position: absolute;
+		bottom: -4px;
+		width: 0%;
+		height: 4px;
+		background-color: #e7816b;
+		opacity: 0;
+		left: 0;
+		border-radius: 999px;
+		transition: width 0.3s ease, opacity 0.3s ease, left 0.3s ease;
+	}
+
+	.nav-underline:hover::after {
+		width: 100%;
+		opacity: 0.5;
+		transform: translateX(-50%) scaleX(1);
+	}
+	.text-mobile-nav:hover::after {
+		width: 100%;
+		opacity: 0.8;
+	}
+	.text .text-body {
+		@apply font-normal text-base leading-[26px];
+	}
+}
