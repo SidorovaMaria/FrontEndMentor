@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+	--color-main-yellow: #fda214;
+	--color-slate-200: #bcced9;
+	--color-slate-600: #304859;
+	--color-slate-900: #152938;
+	--color-greyish-white: #f2f2f2;
+	--color-whitest: #fcfcfc;
+	--color-blue-900: #7191a5;
+	--color-blue-500: #6395b8;
+	--color-slate-100: #dfe7ec;
+	--font-atkinson: "Atkinson Hyperlegible", sans-serif;
+	--text-56: 56px;
+	--text-48: 48px;
+	--text-44: 44px;
+	--text-40: 40px;
+	--text-32: 32px;
+	--text-26: 26px;
+	--text-24: 24px;
+	--text-20: 20px;
+	--text-15: 15px;
+	--text-body: 18px;
+	--leading-25: 25px;
+	--radius-5: 5px;
+	--radius-10: 10px;
+	--radius-26: 26px;
+	--radius-20: 20px;
+}
+body,
+html {
+	@apply bg-whitest font-atkinson;
+}
+@layer components {
+	.text-1 {
+		@apply text-48 font-bold leading-15;
+	}
+	.text-2 {
+		@apply text-32 font-bold leading-10 md:text-40;
+	}
+	.text-3 {
+		@apply text-20 font-bold leading-25;
+	}
+	.text {
+		@apply text-body font-bold leading-[22px];
+	}
+	.icon-4 {
+		@apply text-40 md:text-56 font-bold leading-15 md:leading-15 text-whitest;
+	}
+	.icon-6 {
+		@apply text-[24px] md:text-44 leading-[30px] md:leading-15 font-bold;
+	}
+	.number-lg {
+		@apply text-56 font-bold leading-15;
+	}
+	.menu-btn {
+		@apply rounded-26 bg-main-yellow hover:bg-[#FFB84A] text-whitest text-[18px] leading-[22px] md:text-32 font-bold md:leading-10;
+	}
+
+	.number-btn {
+		@apply rounded-26 bg-slate-200  hover:bg-blue-500 text-whitest font-bold
+        text-base leading-5 md:text-26 md:leading-8;
+	}
+	.number-btn.active {
+		@apply bg-slate-600!;
+	}
+	.restart-btn {
+		@apply rounded-26 bg-main-yellow hover:bg-[#FFB84A] text-whitest font-bold text-20 leading-25;
+	}
+	.new-game {
+		@apply font-bold rounded-26 bg-slate-100 text-slate-600 hover:text-whitest hover:bg-blue-500 text-20 leading-25;
+	}
+	.grid-item {
+		@apply w-full h-full bg-slate-200 text-whitest;
+	}
+	.player-box {
+		@apply bg-slate-100 rounded-5 transition-all duration-500 ease-in-out;
+	}
+	.player-box.active {
+		@apply bg-main-yellow rounded-5 md:rounded-10 relative;
+	}
+	.player-box.active::after {
+		content: "";
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%) rotate(45deg);
+		height: 16px;
+		width: 16px;
+		background-color: #fda214;
+		top: -8px;
+	}
+}
