@@ -11,7 +11,7 @@ const RulesModal = ({ closeModal }) => {
 			variants={dropIn}
 			className="absolute top-0 left-0 h-full w-full flex justify-center items-center px-5"
 		>
-			<div className="bg-white rounded-[40px] pt-[30px] pb-15 w-full border-[3px] border-blac flex flex-col items-center px-5 gap-[30px] solid-shadow-L relative md:max-w-[480px]">
+			<div className="bg-white rounded-[40px] pt-[30px] pb-15 w-full border-[3px] border-blac flex flex-col items-center px-5 gap-[30px] shadow-[0px_10px_0px] relative md:max-w-[480px]">
 				<h1 className="text-L uppercase">Rules</h1>
 				<div className="w-full flex flex-col gap-4">
 					<h2 className="text-S uppercase text-purple">Objective</h2>

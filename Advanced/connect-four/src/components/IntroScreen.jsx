@@ -22,7 +22,7 @@ const IntroScreen = () => {
 			exit="exit"
 			variants={flipIntro}
 		>
-			<div className="md:border-[3px] md:border-black md:hover:shadow-purple-darker rounded-[40px] md:px-10 md:pt-[70px] md:pb-15 flex flex-col items-center gap-20 w-[480px] md:bg-purple md:shadow-[0_10px_0] border-0 px-5 bg-none  ">
+			<div className="md:border-[3px] md:border-black rounded-[40px] md:px-10 md:pt-[70px] md:pb-15 flex flex-col items-center gap-20 w-[480px] md:bg-purple md:shadow-[0_10px_0] border-0 px-5 bg-none  ">
 				{/* Logo */}
 				<img src="/assets/images/logo.svg" className="opacity-100" />
 				<div className="flex flex-col gap-[30px] w-full">

@@ -30,10 +30,10 @@ export const dropIn = {
 		y: "0",
 		opacity: 1,
 		transition: {
-			duration: 0.3,
+			duration: 1.0,
 			type: "spring",
 			damping: 20,
-			stiffness: 500,
+			stiffness: 100,
 		},
 	},
 	exit: {

@@ -8,7 +8,9 @@ import WinnerBlock from "./WinnerBlock";
 
 const ConnectFourBoard = () => {
 	const dispatch = useDispatch();
-	const { board, winner, currentPlayer } = useSelector((state) => state.game);
+	const { board, winner, currentPlayer, winnerCombination } = useSelector(
+		(state) => state.game
+	);
 	const handleClick = (col) => {
 		if (!winner) {
 			dispatch(dropDisc(col));
@@ -25,10 +27,20 @@ const ConnectFourBoard = () => {
 				animate="animate"
 				exit="exit"
 			>
-				<div className="grid grid-cols-7 grid-rows-6 w-[335px] h-[310px] z-20  pb-7 px-2 pt-3 gap-2 ">
+				<div className="grid grid-cols-7 grid-rows-6 w-[335px] h-[310px] z-20  pb-8 px-2 pt-3 gap-2 ">
 					{board.map((row, rowIndex) =>
 						row.map((cell, colIndex) => {
 							const discKey = `${rowIndex}-${colIndex}-${cell}`;
+							let winnerTile = false;
+							if (
+								winnerCombination?.some(
+									([winRow, winCol]) =>
+										winRow === rowIndex &&
+										winCol === colIndex
+								)
+							) {
+								winnerTile = true;
+							}
 
 							return (
 								<div
@@ -44,7 +56,7 @@ const ConnectFourBoard = () => {
 											transition={{
 												duration: 0.3,
 											}}
-											className={``}
+											className={`relative `}
 										>
 											<img
 												src={`${
@@ -53,6 +65,17 @@ const ConnectFourBoard = () => {
 														: "/assets/images/counter-yellow-small.svg"
 												}`}
 											/>
+											{winnerTile && (
+												<div className="absolute h-5 rounded-full bg-white w-5 top-1/2 -translate-y-1/2  left-1/2 -translate-x-1/2 flex items-center justify-center">
+													<div
+														className={`w-2 h-2 rounded-full ${
+															cell === "red"
+																? "bg-pink"
+																: "bg-yellow"
+														}`}
+													></div>
+												</div>
+											)}
 										</motion.div>
 									)}
 									<img
@@ -90,11 +113,25 @@ const ConnectFourBoard = () => {
 					{board.map((row, rowIndex) =>
 						row.map((cell, colIndex) => {
 							const discKey = `${rowIndex}-${colIndex}-${cell}`;
+							let winnerTile = false;
+							if (
+								winnerCombination?.some(
+									([winRow, winCol]) =>
+										winRow === rowIndex &&
+										winCol === colIndex
+								)
+							) {
+								winnerTile = true;
+							}
 
 							return (
 								<div
 									key={`${rowIndex}-${colIndex}`}
-									className={`group flex justify-center items-center`}
+									className={`group flex justify-center items-center ${
+										winner
+											? "cursor-not-allowed"
+											: "cursor-pointer"
+									}`}
 									onClick={() => handleClick(colIndex)}
 								>
 									{cell && (
@@ -105,7 +142,7 @@ const ConnectFourBoard = () => {
 											transition={{
 												duration: 0.3,
 											}}
-											className={``}
+											className={`relative `}
 										>
 											<img
 												src={`${
@@ -114,6 +151,17 @@ const ConnectFourBoard = () => {
 														: "/assets/images/counter-yellow-large.svg"
 												}`}
 											/>
+											{winnerTile && (
+												<div className="absolute h-8.5 rounded-full bg-white w-8.5 top-1/2 -translate-y-1/2  left-1/2 -translate-x-1/2 flex items-center justify-center">
+													<div
+														className={`w-5 h-5 rounded-full ${
+															cell === "red"
+																? "bg-pink"
+																: "bg-yellow"
+														}`}
+													></div>
+												</div>
+											)}
 										</motion.div>
 									)}
 									<img

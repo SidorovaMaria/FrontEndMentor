@@ -11,6 +11,7 @@ const initialState = {
 	gamesPlayed: 0,
 	timerStopped: false,
 	gameStarted: false,
+	winnerCombination: null,
 	timer: 30,
 	gameMode: null, // 'pvp' or 'cpu'
 	players: {
@@ -20,7 +21,6 @@ const initialState = {
 };
 
 const checkWin = (board, playerColor) => {
-	// Win checking logic (same as yours)
 	for (let row = 0; row < ROWS; row++) {
 		for (let col = 0; col <= COLS - 4; col++) {
 			if (
@@ -28,10 +28,21 @@ const checkWin = (board, playerColor) => {
 				board[row][col + 1] === playerColor &&
 				board[row][col + 2] === playerColor &&
 				board[row][col + 3] === playerColor
-			)
-				return true;
+			) {
+				return {
+					hasWon: true,
+					cells: [
+						[row, col],
+						[row, col + 1],
+						[row, col + 2],
+						[row, col + 3],
+					],
+				};
+			}
 		}
 	}
+
+	// Match in the row
 	for (let col = 0; col < COLS; col++) {
 		for (let row = 0; row <= ROWS - 4; row++) {
 			if (
@@ -39,8 +50,17 @@ const checkWin = (board, playerColor) => {
 				board[row + 1][col] === playerColor &&
 				board[row + 2][col] === playerColor &&
 				board[row + 3][col] === playerColor
-			)
-				return true;
+			) {
+				return {
+					hasWon: true,
+					cells: [
+						[row, col],
+						[row + 1, col],
+						[row + 2, col],
+						[row + 3, col],
+					],
+				};
+			}
 		}
 	}
 	for (let row = 3; row < ROWS; row++) {
@@ -50,8 +70,17 @@ const checkWin = (board, playerColor) => {
 				board[row - 1][col + 1] === playerColor &&
 				board[row - 2][col + 2] === playerColor &&
 				board[row - 3][col + 3] === playerColor
-			)
-				return true;
+			) {
+				return {
+					hasWon: true,
+					cells: [
+						[row, col],
+						[row - 1, col + 1],
+						[row - 2, col + 2],
+						[row - 3, col + 3],
+					],
+				};
+			}
 		}
 	}
 	for (let row = 0; row <= ROWS - 4; row++) {
@@ -61,10 +90,20 @@ const checkWin = (board, playerColor) => {
 				board[row + 1][col + 1] === playerColor &&
 				board[row + 2][col + 2] === playerColor &&
 				board[row + 3][col + 3] === playerColor
-			)
-				return true;
+			) {
+				return {
+					hasWon: true,
+					cells: [
+						[row, col],
+						[row + 1, col + 1],
+						[row + 2, col + 2],
+						[row + 3, col + 3],
+					],
+				};
+			}
 		}
 	}
+
 	return false;
 };
 
@@ -98,8 +137,10 @@ export const gameSlice = createSlice({
 			for (let row = ROWS - 1; row >= 0; row--) {
 				if (!state.board[row][col]) {
 					state.board[row][col] = color;
+					const { hasWon, cells } = checkWin(state.board, color);
 
-					if (checkWin(state.board, color)) {
+					if (hasWon) {
+						state.winnerCombination = cells;
 						state.winner = currentPlayer;
 						state.gamesPlayed += 1;
 						state.currentPlayer.name === state.players.player1.name
@@ -146,6 +187,7 @@ export const gameSlice = createSlice({
 					? state.players.player2
 					: state.players.player1;
 			state.timer = 30;
+			state.winnerCombination = null;
 		},
 		stopTimer: (state) => {
 			state.timerStopped = true;

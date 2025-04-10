@@ -24,7 +24,7 @@ const WinnerBlock = () => {
 						</p>
 						<button
 							onClick={() => dispatch(restartGame())}
-							className="text-white bg-purple-darker rounded-[20px] uppercase text-XS w-[130px] flex justify-center items-center h-10"
+							className="text-white bg-purple-darker rounded-[20px] uppercase text-XS w-[130px] flex justify-center items-center h-10 hover:bg-pink transition-all"
 						>
 							play Again
 						</button>

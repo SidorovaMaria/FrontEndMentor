@@ -15,7 +15,7 @@ const PauseModal = ({ closeModal }) => {
 				animate="visible"
 				exit="exit"
 				variants={dropIn}
-				className="bg-purple rounded-[40px] border-[3px] border-black solid-shadow-L w-full flex flex-col gap-[30px] items-center py-[30px] px-5 md:max-w-[480px] md:mx-auto md:py-[50px] md:px-10"
+				className="bg-purple rounded-[40px] border-[3px] border-black shadow-[0px_10px_0px] w-full flex flex-col gap-[30px] items-center py-[30px] px-5 md:max-w-[480px] md:mx-auto md:py-[50px] md:px-10"
 			>
 				<h1 className="text-L text-white uppercase md:mb-3.5 ">
 					Pause
