@@ -6,46 +6,43 @@ import { useSelector } from "react-redux";
 import PlayerScore from "./PlayerScore";
 import ConnectFourBoard from "./ConnectFourBoard";
 const Game = () => {
-	const { gameStarted, gameOpponent } = useSelector((state) => state.game);
-	console.log(gameOpponent);
+	const { gameStarted, players } = useSelector((state) => state.game);
+
 	return (
-		<motion.main className="h-full w-full bg-purple flex flex-col gap-[50px]">
+		<motion.main className="h-full w-full bg-purple flex flex-col gap-[50px] md:gap-8">
 			<AnimatePresence>
 				{gameStarted && (
 					<>
 						<GameHeader />
 						<div className="flex w-full px-2.5 gap-5 md:max-w-[633px] md:mx-auto lg:hidden">
-							{gameOpponent === "cpu" ? (
-								<>
-									<>
-										<PlayerScore
-											position={"left"}
-											player={"you"}
-											score={12}
-										/>
-										<PlayerScore
-											position={"right"}
-											player={"cpu"}
-											score={23}
-										/>
-									</>
-								</>
-							) : (
-								<>
-									<PlayerScore
-										position={"left"}
-										player={"player 1"}
-										score={12}
-									/>
-									<PlayerScore
-										position={"right"}
-										player={"player 2"}
-										score={23}
-									/>
-								</>
-							)}
+							<PlayerScore
+								position={"left"}
+								player={players.player1.name}
+								score={players.player1.score}
+							/>
+							<PlayerScore
+								position={"right"}
+								player={players.player2.name}
+								score={players.player2.score}
+							/>
 						</div>
-						<ConnectFourBoard />
+						<div className="flex items-center justify-around w-full">
+							<div className="hidden lg:block gap-[800px]">
+								<PlayerScore
+									position={"top"}
+									player={players.player1.name}
+									score={players.player1.score}
+								/>
+							</div>
+							<ConnectFourBoard />
+							<div className="hidden lg:block gap-[1000px]">
+								<PlayerScore
+									position={"top"}
+									player={players.player2.name}
+									score={players.player2.score}
+								/>
+							</div>
+						</div>
 					</>
 				)}
 			</AnimatePresence>

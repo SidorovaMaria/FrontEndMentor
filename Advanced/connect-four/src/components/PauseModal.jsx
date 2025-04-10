@@ -4,7 +4,7 @@ import { dropIn } from "../app/motionVariants";
 import BtnWhite from "./buttons/BtnWhite";
 import BtnQuit from "./buttons/BtnQuit";
 import { useDispatch } from "react-redux";
-import { quitGame } from "../features/gameSlice";
+import { quitGame, restartGame } from "../features/gameSlice";
 const PauseModal = ({ closeModal }) => {
 	const dispatch = useDispatch();
 	// ! Get Score for the players
@@ -27,7 +27,8 @@ const PauseModal = ({ closeModal }) => {
 				/>
 				<BtnWhite
 					handleOnClick={() => {
-						console.log("Restart Game");
+						dispatch(restartGame());
+						closeModal();
 					}}
 					text="restart"
 					className={" justify-center"}

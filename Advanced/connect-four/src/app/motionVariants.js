@@ -58,7 +58,7 @@ export const fadeDown = {
 		},
 	},
 	exit: {
-		y: -50,
+		y: 50,
 		opacity: 0,
 		transition: {
 			duration: 0.3,
@@ -80,7 +80,7 @@ export const fadeRight = {
 		},
 	},
 	exit: {
-		x: -30,
+		x: 50,
 		opacity: 0,
 		transition: {
 			duration: 0.3,
@@ -102,7 +102,7 @@ export const fadeLeft = {
 		},
 	},
 	exit: {
-		x: 50,
+		x: -50,
 		opacity: 0,
 		transition: {
 			duration: 0.3,
@@ -125,11 +125,29 @@ export const fadeUp = {
 		},
 	},
 	exit: {
-		y: 100,
+		y: -100,
 		opacity: 0,
 		transition: {
 			duration: 0.3,
 			ease: "easeIn",
 		},
+	},
+};
+export const turnFlip = {
+	initial: {
+		transform: "rotateY(-90deg)",
+		opacity: 0,
+	},
+	animate: {
+		transform: "scale(1) rotateY(0)",
+		opacity: 1,
+		transition: {
+			duration: 0.5,
+			ease: "easeOut",
+		},
+	},
+	exit: {
+		opacity: 0,
+		transform: " rotateY(-180deg)",
 	},
 };

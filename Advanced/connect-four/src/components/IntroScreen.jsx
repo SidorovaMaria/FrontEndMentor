@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import BtnVsPlayer from "./buttons/BtnVsPlayer";
 import BtnWhite from "./buttons/BtnWhite";
 import { useDispatch } from "react-redux";
-import { setOpponent, startGame } from "../features/gameSlice";
+import { startGame } from "../features/gameSlice";
 import { AnimatePresence, motion } from "motion/react";
 import { flipIntro } from "../app/motionVariants";
 import RulesModal from "./RulesModal";
@@ -12,8 +12,7 @@ const IntroScreen = () => {
 	const dispatch = useDispatch();
 	const [openRules, setOpenRules] = useState(false);
 	const playAgainst = (player) => {
-		dispatch(startGame());
-		dispatch(setOpponent(player));
+		dispatch(startGame(player));
 	};
 	return (
 		<motion.div
@@ -28,7 +27,7 @@ const IntroScreen = () => {
 				<img src="/assets/images/logo.svg" className="opacity-100" />
 				<div className="flex flex-col gap-[30px] w-full">
 					<BtnVsCpu handleOnClick={() => playAgainst("cpu")} />
-					<BtnVsPlayer handleOnClick={() => playAgainst("player")} />
+					<BtnVsPlayer handleOnClick={() => playAgainst("pvp")} />
 					<BtnWhite
 						text={"Game Rules"}
 						handleOnClick={() => setOpenRules(true)}
