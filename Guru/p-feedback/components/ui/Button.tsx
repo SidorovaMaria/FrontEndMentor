@@ -1,7 +1,7 @@
 import React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "@radix-ui/react-slot";
-import { cn } from "@/utils";
+import { cn } from "@/lib";
 import { ChevronLeft } from "lucide-react";
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 rounded-xl transition-colors duration-200 focus:outline-none focus:ring-0 disabled:opacity-50 rounded-[10px] cursor-pointer text-white text-sm font-bold",

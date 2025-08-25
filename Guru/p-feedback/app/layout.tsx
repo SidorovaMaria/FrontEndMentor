@@ -19,7 +19,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${jost.variable}  antialiased`}>{children}</body>
+      <body className={`${jost.variable}  antialiased`}>
+        <main className="md:max-w-[700px] mx-auto lg:max-w-5xl  md:mt-[56px] ">
+          {children}{" "}
+        </main>
+      </body>
     </html>
   );
 }

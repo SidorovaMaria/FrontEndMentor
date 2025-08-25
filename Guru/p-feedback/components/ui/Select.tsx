@@ -1,5 +1,5 @@
 import * as SelectPrimitive from "@radix-ui/react-select";
-import { cn } from "@/utils";
+import { cn } from "@/lib";
 import { cva } from "class-variance-authority";
 import { Check, ChevronDown } from "lucide-react";
 import React from "react";

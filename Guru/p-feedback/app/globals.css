@@ -22,6 +22,7 @@
 
 body {
   font-family: var(--font-jost);
+  background-color: #f7f8fd;
 }
 @layer base {
   h1 {
@@ -39,10 +40,12 @@ body {
   p.body {
     @apply text-base leading-[23px];
   }
-  p.regular {
+  p.regular,
+  span.regular {
     @apply text-[15px] leading-[22px];
   }
-  p.small {
+  p.small,
+  span.small {
     @apply font-semibold text-[13px] leading-[19px];
   }
 }
@@ -70,6 +73,9 @@ body {
     transform: rotateX(90deg);
     transform-origin: top;
   }
+}
+@utility radial-gradient {
+  @apply bg-radial-[at_95%_0%] from-[#E84D70] via-[#A337F6] to-[#28A7ED];
 }
 
 @theme inline {

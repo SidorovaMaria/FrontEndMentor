@@ -1,4 +1,4 @@
-import { cn } from "@/utils";
+import { cn } from "@/lib";
 import React from "react";
 
 const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
