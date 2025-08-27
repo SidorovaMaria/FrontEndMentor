@@ -6,6 +6,8 @@ import React from "react";
 import MobileTabs from "./MobileTabs";
 import RoadMapRequests from "./MobileRequests";
 import BackButton from "@/components/BackButton";
+import { StatusType } from "@/data";
+import { getCountedPlannedFeedbacks } from "@/lib/data/api";
 
 const Roadmap = async ({
   searchParams,
@@ -15,6 +17,8 @@ const Roadmap = async ({
   const { status = "in-progress" } = (await searchParams) as {
     status: StatusType;
   };
+  const plannedFeedback = await getCountedPlannedFeedbacks();
+
   return (
     <main>
       <header className="bg-[#373F68] px-6 md:px-8 py-6.5 flex items-center justify-between md:rounded-[10px]">
@@ -22,15 +26,13 @@ const Roadmap = async ({
           <BackButton className="bg-transparent" />
           <h3 className="text-white">Roadmap</h3>
         </div>
-        <Link href="/feedback/new">
-          <Button variant="pink">
-            {" "}
-            <Link href="/feedback/new">+ Add Feedback</Link>
-          </Button>
-        </Link>
+
+        <Button variant="pink">
+          <Link href="/feedback/new">+ Add Feedback</Link>
+        </Button>
       </header>
       <aside className="md:hidden">
-        <MobileTabs />
+        <MobileTabs planned={plannedFeedback} />
       </aside>
       <section className="md:hidden mt-6">
         <RoadMapRequests status={status} />

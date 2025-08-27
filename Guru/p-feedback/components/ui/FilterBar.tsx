@@ -9,26 +9,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./Select";
-import data from "../../data/data.json";
 import { Button } from "./Button";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { formUrlQuery, sortRequests } from "@/lib/utils";
 
-const FilterBar = () => {
+const FilterBar = ({ requests }: { requests: ProductRequest[] }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [sortBy, setSortBy] = useState(Filters[0]);
-  const selectedCategories = useMemo(() => {
-    const tags = searchParams.get("tags");
-    return tags ? tags.split(",").filter(Boolean) : [];
-  }, [searchParams]);
-  const shownRequests = useMemo(() => {
-    return data.productRequests.filter((request) => {
-      if (selectedCategories.length === 0) return true;
-      return selectedCategories.includes(request.category);
-    });
-  }, [selectedCategories]);
+  const [sortBy, setSortBy] = useState<(typeof Filters)[number]>(Filters[0]);
   useEffect(() => {
     const sortParam = searchParams.get("sort");
     if (sortParam) {
@@ -60,7 +49,7 @@ const FilterBar = () => {
             width={20}
             height={20}
           />
-          <h3>{shownRequests.length} Suggestions</h3>
+          <h3>{requests.length} Suggestions</h3>
         </div>
         <Select
           value={sortBy.value}

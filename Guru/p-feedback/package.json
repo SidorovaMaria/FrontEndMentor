@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "start": "next start",
-    "lint": "eslint"
+    
+    "lint": "eslint",
+    "server": "json-server --watch data/data.json --port 3001",
+    "start": "concurrently \"npm run server\" \"npm run dev\""
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",

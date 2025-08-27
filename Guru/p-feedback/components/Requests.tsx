@@ -1,31 +1,20 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useMemo } from "react";
-import data from "../data/data.json";
 import Image from "next/image";
 import { Button } from "./ui/Button";
 import { sortRequests } from "@/lib/utils";
 import RequestItem from "./RequestItem";
 
-const Requests = () => {
+const Requests = ({ requests }: { requests: ProductRequest[] }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const selectedCategories = useMemo(() => {
-    const tags = searchParams.get("tags");
-    return tags ? tags.split(",").filter(Boolean) : [];
-  }, [searchParams]);
-  const shownRequests = useMemo(() => {
-    const sort = searchParams.get("sort") || "most-upvotes";
-    const sorted = sortRequests(data.productRequests as ProductRequest[], sort);
-    return sorted.filter((request) => {
-      if (selectedCategories.length === 0) return true;
-      return selectedCategories.includes(request.category);
-    });
-  }, [selectedCategories, searchParams]);
-
+  const sorted = useMemo(() => {
+    return sortRequests(requests, searchParams.get("sort") || "most-upvotes");
+  }, [requests, searchParams]);
   return (
     <section>
-      {shownRequests.length === 0 ? (
+      {sorted.length === 0 ? (
         <section
           className="flex flex-col items-center justify-center min-h-[460px] w-full bg-white rounded-[10px]"
           role="status"
@@ -60,7 +49,7 @@ const Requests = () => {
           role="list"
           aria-label="Product Requests List"
         >
-          {shownRequests.map((request) => (
+          {sorted.map((request) => (
             <RequestItem request={request} key={request.id} />
           ))}
         </ul>

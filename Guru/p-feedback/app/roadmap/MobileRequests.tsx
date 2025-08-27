@@ -1,16 +1,22 @@
-import React, { useMemo } from "react";
-import data from "../../data/data.json";
-import { statusDescription } from "@/data";
+import React from "react";
+
+import { statusDescription, StatusType } from "@/data";
 import RoadMapItem from "@/components/RoadMapItem";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 
-const RoadMapRequests = ({ status }: { status: StatusType }) => {
-  const statusRequests = useMemo(() => {
-    return data.productRequests.filter((request) => request.status === status);
-  }, [status]) as ProductRequest[];
+import { getProductRequestByTagsAndStatus } from "@/lib/data/api";
 
+const RoadMapRequests = async ({ status }: { status: StatusType }) => {
+  const statusRequests = await getProductRequestByTagsAndStatus(
+    undefined,
+    status
+  );
+  // Sort by Upvotes
+  const sorted = statusRequests.sort((a, b) => {
+    return b.upvotes - a.upvotes;
+  });
   return (
     <section
       aria-labelledby={`roadmap-${status}`}
@@ -27,7 +33,7 @@ const RoadMapRequests = ({ status }: { status: StatusType }) => {
           {statusDescription[status] ?? "No description available."}
         </p>
       </div>
-      {statusRequests.length === 0 && (
+      {sorted.length === 0 && (
         <div
           role="status"
           aria-live="polite"
@@ -52,7 +58,7 @@ const RoadMapRequests = ({ status }: { status: StatusType }) => {
         </div>
       )}
       <ul className="flex flex-col gap-4 mt-6">
-        {statusRequests.map((request) => (
+        {sorted.map((request) => (
           <RoadMapItem key={request.id} request={request} />
         ))}
       </ul>

@@ -1,13 +1,12 @@
 import BackButton from "@/components/BackButton";
 import Image from "next/image";
 import React from "react";
-import data from "../../../../data/data.json";
 import FeedbackForm from "@/components/forms/FeedbackForm";
+import { get } from "http";
+import { getProductRequestById } from "@/lib/data/api";
 const EditPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
-  const requestToEdit = data.productRequests.find(
-    (req) => req.id.toString() === id
-  ) as ProductRequest;
+  const requestToEdit = await getProductRequestById(id);
   if (!requestToEdit) {
     throw new Error("Request not found");
   }

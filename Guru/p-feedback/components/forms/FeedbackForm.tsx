@@ -1,22 +1,36 @@
 "use client";
-import { CategoryFilter } from "@/data";
+
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Input from "../ui/Input";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "../ui/Select";
 import { SelectValue } from "@radix-ui/react-select";
 import { Button } from "../ui/Button";
-const FeedbackForm = ({ request }: { request?: ProductRequest }) => {
-  const categoryOption =
-    request?.category && !["ux", "ui"].includes(request.category)
-      ? request.category.charAt(0).toUpperCase() + request.category.slice(1)
-      : request?.category.toUpperCase();
+import {
+  createNewProductRequest,
+  deleteProductRequestById,
+  updateProductRequest,
+} from "@/lib/data/api";
+import {
+  CategoryFilter,
+  CategoryType,
+  StatusType,
+  statusTypes,
+  UI_CategoryFilter,
+  UICategory,
+  UIstatusTypes,
+} from "@/data";
+import { UIStatusToStorage, uiToStorageCategory } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
+const FeedbackForm = ({ request }: { request?: ProductRequest }) => {
+  const router = useRouter();
   const feedbackSchema = z.object({
     feedback: z.string().min(1, "Title is required"),
     category: z.enum(CategoryFilter),
+    status: z.enum(statusTypes),
     details: z
       .string()
       .min(1, "Can't be empty")
@@ -26,8 +40,9 @@ const FeedbackForm = ({ request }: { request?: ProductRequest }) => {
     resolver: zodResolver(feedbackSchema),
     defaultValues: {
       feedback: request?.title || "",
-      category: categoryOption || "Feature",
+      category: request?.category || "Feature",
       details: request?.description || "",
+      status: request?.status || "suggestion",
     },
     mode: "onChange",
   });
@@ -36,11 +51,33 @@ const FeedbackForm = ({ request }: { request?: ProductRequest }) => {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = form;
-  const onSubmit = (data: z.infer<typeof feedbackSchema>) => {
-    console.log(data);
+  const onSubmit = async (data: z.infer<typeof feedbackSchema>) => {
+    if (!request) {
+      const result = await createNewProductRequest({
+        title: data.feedback,
+        category: data.category,
+        description: data.details,
+      });
+    } else {
+      const result = await updateProductRequest({
+        id: request.id,
+        status: data.status,
+        title: data.feedback,
+        category: data.category,
+        description: data.details,
+      });
+      router.push(`/feedback/${request.id}`);
+    }
+    clearForm();
   };
   const clearForm = () => {
     form.reset();
+  };
+  const deleteRequest = async () => {
+    if (request?.id) {
+      await deleteProductRequestById(request.id);
+      router.push(`/`);
+    }
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
@@ -78,6 +115,7 @@ const FeedbackForm = ({ request }: { request?: ProductRequest }) => {
           )}
         </div>
       </div>
+      {/* Category */}
       <div className="flex flex-col gap-4 w-full">
         <div className="space-y-0.5 w-full">
           <label htmlFor="category" className="font-bold">
@@ -88,7 +126,9 @@ const FeedbackForm = ({ request }: { request?: ProductRequest }) => {
           </p>
         </div>
         <Select
-          onValueChange={(value) => form.setValue("category", value)}
+          onValueChange={(value: CategoryType) =>
+            form.setValue("category", value)
+          }
           value={form.watch("category")}
           aria-labelledby="category "
           aria-describedby="category-help"
@@ -97,14 +137,45 @@ const FeedbackForm = ({ request }: { request?: ProductRequest }) => {
             <SelectValue placeholder="Select a category" />
           </SelectTrigger>
           <SelectContent id="category">
-            {Object.values(CategoryFilter).map((category) => (
-              <SelectItem key={category} value={category}>
+            {UI_CategoryFilter.map((category) => (
+              <SelectItem key={category} value={uiToStorageCategory(category)}>
                 {category}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
       </div>
+      {request?.status && (
+        <div className="flex flex-col gap-4 w-full">
+          <div className="space-y-0.5 w-full">
+            <label htmlFor="status" className="font-bold">
+              Update Status
+            </label>
+            <p id="status-help" className="text-[13px] text-[#647196]">
+              Change feature state
+            </p>
+          </div>
+          <Select
+            onValueChange={(value: StatusType) =>
+              form.setValue("status", value)
+            }
+            value={form.watch("status")}
+            aria-labelledby="status"
+            aria-describedby="status-help"
+          >
+            <SelectTrigger className="font-normal text-[15px] text-[#3A4374] ">
+              <SelectValue placeholder="Select a status" />
+            </SelectTrigger>
+            <SelectContent id="status">
+              {UIstatusTypes.map((status) => (
+                <SelectItem key={status} value={UIStatusToStorage(status)}>
+                  {status}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      )}
       {/* Details */}
       <div className="flex flex-col gap-4 w-full">
         <div className="space-y-0.5">
@@ -143,6 +214,7 @@ const FeedbackForm = ({ request }: { request?: ProductRequest }) => {
       <div className="flex justify-between items-center w-full">
         {request && (
           <Button
+            onClick={deleteRequest}
             variant="orange"
             type="button"
             aria-label={`Delete ${request.title}`}
@@ -159,15 +231,27 @@ const FeedbackForm = ({ request }: { request?: ProductRequest }) => {
           >
             Cancel
           </Button>
-          <Button
-            type="submit"
-            variant="pink"
-            loading={isSubmitting}
-            aria-label="Add feedback"
-            aria-busy={isSubmitting}
-          >
-            Add Feedback
-          </Button>
+          {request?.status ? (
+            <Button
+              type="submit"
+              variant="pink"
+              loading={isSubmitting}
+              aria-label="Add feedback"
+              aria-busy={isSubmitting}
+            >
+              Update Feedback
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              variant="pink"
+              loading={isSubmitting}
+              aria-label="Add feedback"
+              aria-busy={isSubmitting}
+            >
+              Add Feedback
+            </Button>
+          )}
         </div>
       </div>
     </form>

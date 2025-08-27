@@ -21,7 +21,7 @@ const RoadMapItem = ({ request }: { request: ProductRequest }) => {
         {request.status === "in-progress" ? "In Progress" : request.status}
       </p>
       <Link
-        href={`/request/${request.id}`}
+        href={`/feedback/${request.id}`}
         aria-label={`View details for ${request.title}`}
       >
         <p className="small font-bold text-[13px] text-[#3a4374] mt-4 mb-[9px] md:mt-[14px] md:mb-[11px] lg:mb-[4px] lg:mt-2 group-hover:text-[#4661E6]">

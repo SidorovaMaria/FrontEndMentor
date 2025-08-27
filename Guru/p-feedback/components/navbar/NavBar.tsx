@@ -1,56 +1,47 @@
 "use client";
 import { getCountedPlannedFeedbacks, getStatusColor } from "@/lib/data-utils";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import data from "../../../data/data.json";
-import { Badge } from "../Badge";
-import { CategoryFilter } from "@/data";
+import { Badge } from "../ui/Badge";
 import Link from "next/link";
-
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { formUrlQuery, removeKeysFromUrlQuery } from "@/lib/utils";
+import { UI_CategoryFilter } from "@/data";
 
-const NavBar = () => {
+const NavBar = ({ planned }: { planned: Record<string, number> }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [openMenu, setOpenMenu] = useState(false);
-  const PlannedFeedbacks = useMemo(() => {
-    return getCountedPlannedFeedbacks(
-      (data as { productRequests: ProductRequest[] }).productRequests
-    );
-  }, []);
-  const initialSelected = useMemo<string[]>(() => {
-    const tags = searchParams.get("tags");
-    return tags ? tags.split(",").filter(Boolean) : [];
+
+  const initialSelected = useMemo<string>(() => {
+    const tag = searchParams.get("tag");
+    return tag ? tag : "";
   }, [searchParams]);
   const [selectedCategories, setSelectedCategories] =
-    React.useState<string[]>(initialSelected);
+    React.useState<string>(initialSelected);
 
   useEffect(() => {
-    const tags = searchParams.get("tags");
-    const next = tags ? tags.split(",").filter(Boolean) : [];
-    if (
-      next.length !== selectedCategories.length ||
-      next.some((tag, i) => tag !== selectedCategories[i])
-    ) {
+    const tag = searchParams.get("tag");
+    const next = tag ? tag : "";
+    if (next !== selectedCategories) {
       setSelectedCategories(next);
     }
   }, [searchParams, selectedCategories]);
 
   const updateUrl = useCallback(
-    (nextTag: string[]) => {
+    (nextTag: string) => {
       let newUrl;
       if (nextTag.length) {
         newUrl = formUrlQuery({
           params: searchParams.toString(),
-          key: "tags",
-          value: nextTag.join(","),
+          key: "tag",
+          value: nextTag,
         });
       } else {
         newUrl = removeKeysFromUrlQuery({
           params: searchParams.toString(),
-          keysToRemove: ["tags"],
+          keysToRemove: ["tag"],
         });
       }
 
@@ -59,16 +50,15 @@ const NavBar = () => {
     [searchParams, router]
   );
   const clearAll = useCallback(() => {
-    setSelectedCategories([]);
-    updateUrl([]);
+    setSelectedCategories("");
+    updateUrl("");
   }, [updateUrl]);
+
   const toggleCategory = useCallback(
     (category: string) => {
       setSelectedCategories((prev) => {
-        const has = prev.includes(category.toLowerCase());
-        const next = has
-          ? prev.filter((c) => c !== category.toLowerCase())
-          : [...prev, category.toLowerCase()];
+        const has = prev === category.toLowerCase();
+        const next = has ? "" : category.toLowerCase();
         updateUrl(next);
         return next;
       });
@@ -100,7 +90,7 @@ const NavBar = () => {
           >
             All
           </Badge>
-          {CategoryFilter.map((category) => {
+          {UI_CategoryFilter.map((category) => {
             const active = selectedCategories.includes(category.toLowerCase());
             return (
               <Badge
@@ -132,7 +122,7 @@ const NavBar = () => {
             </Link>
           </div>
           <div className="flex flex-col justify-between gap-2">
-            {Object.entries(PlannedFeedbacks).map(([status, count]) => (
+            {Object.entries(planned).map(([status, count]) => (
               <div
                 key={status}
                 className={`flex w-full items-center justify-between`}
@@ -235,7 +225,7 @@ const NavBar = () => {
                   >
                     All
                   </Badge>
-                  {CategoryFilter.map((category) => {
+                  {UI_CategoryFilter.map((category) => {
                     const active = selectedCategories.includes(
                       category.toLowerCase()
                     );
@@ -269,7 +259,7 @@ const NavBar = () => {
                     </Link>
                   </div>
                   <div className="flex flex-col justify-between gap-2">
-                    {Object.entries(PlannedFeedbacks).map(([status, count]) => (
+                    {Object.entries(planned).map(([status, count]) => (
                       <div
                         key={status}
                         className={`flex w-full items-center justify-between`}

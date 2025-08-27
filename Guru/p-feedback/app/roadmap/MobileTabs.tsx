@@ -1,20 +1,14 @@
 "use client";
-import { getCountedPlannedFeedbacks } from "@/lib/data-utils";
-import React, { use, useCallback, useEffect, useMemo } from "react";
-import data from "../../data/data.json";
+
+import React, { useCallback, useEffect, useMemo } from "react";
+
 import { motion } from "motion/react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { formUrlQuery } from "@/lib/utils";
 
-const MobileTabs = () => {
+const MobileTabs = ({ planned }: { planned: Record<string, number> }) => {
   const router = useRouter();
-
-  const PlannedFeedbacks = useMemo(() => {
-    return getCountedPlannedFeedbacks(
-      (data as { productRequests: ProductRequest[] }).productRequests
-    );
-  }, []);
   const searchParams = useSearchParams();
   const initialStatus = useMemo<string | null>(() => {
     const status = searchParams.get("status");
@@ -51,7 +45,7 @@ const MobileTabs = () => {
   return (
     <>
       <div className="grid grid-cols-3 ">
-        {Object.entries(PlannedFeedbacks).map(([status, count]) => (
+        {Object.entries(planned).map(([status, count]) => (
           <motion.div
             key={status}
             layoutId={`status-${status}`}

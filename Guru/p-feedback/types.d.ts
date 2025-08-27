@@ -1,21 +1,20 @@
-interface Reply {
-  content: string;
-  replyingTo: User.username;
-  user: User;
-}
-const statusTypes = ["planned", "in-progress", "live", "suggestion"] as const;
-type StatusType = (typeof statusTypes)[number];
-const CategoryFilter = ["UI", "UX", "Enhancement", "Bug", "Feature"] as const;
-type CategoryType = (typeof CategoryFilter)[number];
+// Request Status
 
 interface User {
   image: string;
   name: string;
   username: string;
   productRequests?: ProductRequest[];
+  upvotedRequests?: string[];
+}
+type CurrentUser = User;
+interface Reply {
+  content: string;
+  replyingTo: User["username"];
+  user: User;
 }
 
-interface Comment {
+interface AppComment {
   id: number;
   content: string;
   user: User;
@@ -23,11 +22,16 @@ interface Comment {
 }
 
 interface ProductRequest {
-  id: number;
+  id: string;
   title: string;
-  category: string;
+  category: CategoryType;
   upvotes: number;
   status: StatusType;
   description: string;
-  comments?: Comment[] | undefined;
+  comments?: AppComment[] | undefined;
+  upvotedByCurrentUser?: boolean;
+}
+interface RootData {
+  currentUser: CurrentUser;
+  productRequests: ProductRequest[];
 }

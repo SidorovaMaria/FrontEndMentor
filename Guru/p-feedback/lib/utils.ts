@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import qs from "query-string";
+import { CategoryType, StatusType, UICategory, UIStatusType } from "@/data";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -75,3 +76,45 @@ export const sortRequests = (
       return [...requests].sort((a, b) => b.upvotes - a.upvotes);
   }
 };
+
+export function uiToStorageCategory(ui: UICategory): CategoryType {
+  switch (ui) {
+    case "Feature":
+      return "feature";
+    case "Enhancement":
+      return "enhancement";
+    case "Bug":
+      return "bug";
+    case "UX":
+      return "ux";
+    case "UI":
+      return "ui";
+  }
+}
+export function storageToUiCategory(cat: CategoryType): UICategory {
+  switch (cat) {
+    case "feature":
+      return "Feature";
+    case "enhancement":
+      return "Enhancement";
+    case "bug":
+      return "Bug";
+    case "ux":
+      return "UX";
+    case "ui":
+      return "UI"; // you could also return "UI" here if you prefer
+  }
+}
+
+export function UIStatusToStorage(status: UIStatusType): StatusType {
+  switch (status) {
+    case "Planned":
+      return "planned";
+    case "In Progress":
+      return "in-progress";
+    case "Live":
+      return "live";
+    case "Suggestion":
+      return "suggestion";
+  }
+}

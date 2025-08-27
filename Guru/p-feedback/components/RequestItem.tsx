@@ -1,7 +1,9 @@
+"use client";
 import React from "react";
 import { Badge } from "./ui/Badge";
 import Image from "next/image";
 import Link from "next/link";
+import { upvoteRequest } from "@/lib/data/api";
 
 const RequestItem = ({ request }: { request: ProductRequest }) => {
   const commentsCount = request.comments ? request.comments.length : 0;
@@ -10,7 +12,10 @@ const RequestItem = ({ request }: { request: ProductRequest }) => {
   const headingId = `request-title-${request.id}`;
   const upvotesId = `upvote-label-${request.id}`;
   const commentsId = `comments-label-${request.id}`;
-
+  const upvote = async () => {
+    await upvoteRequest({ requestId: request.id });
+  };
+  console.log(request.upvotedByCurrentUser);
   return (
     <li
       className="bg-white rounded-[10px] p-6 text-[#3A4374] flex flex-col md:flex-row md:items-center  gap-4 md:gap-10 group  cursor-pointer"
@@ -19,7 +24,13 @@ const RequestItem = ({ request }: { request: ProductRequest }) => {
       {/* Desktop Upvote Btn */}
       <div className="hidden md:flex">
         <button type="button" aria-describedby={upvotesId}>
-          <Badge icon iconPosition="top" className="hidden md:flex  py-2 px-3">
+          <Badge
+            onClick={upvote}
+            icon
+            iconPosition="top"
+            variant={request.upvotedByCurrentUser ? "active" : "default"}
+            className="hidden md:flex  py-2 px-3"
+          >
             {request.upvotes}
           </Badge>
         </button>
@@ -60,7 +71,9 @@ const RequestItem = ({ request }: { request: ProductRequest }) => {
         <div className="flex md:hidden">
           <button type="button" aria-describedby={`${upvotesId}-mobile`}>
             <Badge
+              onClick={upvote}
               icon
+              variant={request.upvotedByCurrentUser ? "active" : "default"}
               iconPosition="left"
               className={`flex md:hidden gap-1 py-2 px-2.5`}
             >

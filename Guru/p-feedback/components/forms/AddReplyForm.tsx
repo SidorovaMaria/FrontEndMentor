@@ -1,25 +1,23 @@
-"use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-
+import z from "zod";
 import { motion } from "motion/react";
-import { useDebounce } from "@/hooks/useDebounce";
 import { Button } from "../ui/Button";
-import { createCommentForRequest, createReplyForComment } from "@/lib/data/api";
-
-const AddCommentForm = ({
-  requestId,
-  commentId,
+import { createReplyForComment } from "@/lib/data/api";
+const AddReplyForm = ({
   close,
+  commentId,
+  replyTo,
+  requestId,
 }: {
+  close: () => void;
+  commentId: string;
+  replyTo: string;
   requestId: string;
-  commentId?: number | null;
-  close?: () => void;
 }) => {
   const commentSchema = z.object({
-    comment: z
+    reply: z
       .string()
       .max(250, "Comment should not exceed 250 characters")
       .min(1, "Comment is required"),
@@ -27,7 +25,7 @@ const AddCommentForm = ({
   const form = useForm<z.infer<typeof commentSchema>>({
     resolver: zodResolver(commentSchema),
     defaultValues: {
-      comment: "",
+      reply: "",
     },
     mode: "onChange",
   });
@@ -38,17 +36,14 @@ const AddCommentForm = ({
     watch,
     formState: { errors, isSubmitting },
   } = form;
-
-  //   Comment characters
-  const comment = watch("comment");
-  const debouncedComment = useDebounce(comment, 400);
-  const remainingCharacters = 250 - (debouncedComment?.length ?? 0);
-
   const onSubmit = async (data: z.infer<typeof commentSchema>) => {
-    const result = await createCommentForRequest({
-      requestId: requestId,
-      content: data.comment,
+    const result = await createReplyForComment({
+      commentId,
+      replyingTo: replyTo,
+      requestId,
+      content: data.reply,
     });
+    close();
     reset();
   };
   return (
@@ -58,20 +53,17 @@ const AddCommentForm = ({
       exit={{ opacity: 0, scaleY: 0, originY: 0 }}
       transition={{ duration: 0.25, ease: "easeOut" }}
       onSubmit={handleSubmit(onSubmit)}
-      // className={`${
-      //   variant === "reply" ? "flex gap-4 items-start " : "flex-col"
-      // }`}
       aria-labelledby="add-comment-form"
     >
       <textarea
         id={"text-area"}
         maxLength={250}
-        aria-invalid={!!errors.comment}
+        aria-invalid={!!errors.reply}
         spellCheck="true"
         className="w-full flex-1 px-6 py-4 placeholder:text-[#8C92B3] text-[15px]
         focus:bg-[#F7F8FD] focus:outline-[#4661E6] text-[#3A4374]"
-        placeholder="Type your comment here"
-        {...form.register("comment")}
+        placeholder="Type your reply here"
+        {...form.register("reply")}
         onKeyDown={(e) => {
           if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
             e.preventDefault();
@@ -81,32 +73,23 @@ const AddCommentForm = ({
           }
         }}
       />
-      {errors.comment && (
+      {errors.reply && (
         <p
           id="error"
           role="alert"
           aria-live="assertive"
           className="text-red-500 small"
         >
-          {errors.comment.message}!
+          {errors.reply.message}!
         </p>
       )}
-      <div className={`flex items-center justify-between mt-6`}>
-        <p
-          id={"remaining-characters"}
-          aria-live={remainingCharacters === 0 ? "assertive" : "polite"}
-          className="text-[15px] text-[#647196]"
-        >
-          {remainingCharacters}{" "}
-          {remainingCharacters === 1 ? "character" : "characters"} left
-        </p>
-
+      <div className={`flex items-center justify-end w-full `}>
         <Button variant="pink" className="shrink-0" loading={isSubmitting}>
-          Post Comment
+          Post Reply
         </Button>
       </div>
     </motion.form>
   );
 };
 
-export default AddCommentForm;
+export default AddReplyForm;
