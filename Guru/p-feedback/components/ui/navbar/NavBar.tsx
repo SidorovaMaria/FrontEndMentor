@@ -7,14 +7,19 @@ import { CategoryFilter } from "@/data";
 import Link from "next/link";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Cross, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import { formUrlQuery, removeKeysFromUrlQuery } from "@/lib/utils";
 
 const NavBar = () => {
   const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
   const [openMenu, setOpenMenu] = useState(false);
+  const PlannedFeedbacks = useMemo(() => {
+    return getCountedPlannedFeedbacks(
+      (data as { productRequests: ProductRequest[] }).productRequests
+    );
+  }, []);
   const initialSelected = useMemo<string[]>(() => {
     const tags = searchParams.get("tags");
     return tags ? tags.split(",").filter(Boolean) : [];
@@ -32,22 +37,26 @@ const NavBar = () => {
       setSelectedCategories(next);
     }
   }, [searchParams, selectedCategories]);
-  const PlannedFeedbacks = useMemo(() => {
-    return getCountedPlannedFeedbacks(
-      (data as { productRequests: ProductRequest[] }).productRequests
-    );
-  }, []);
+
   const updateUrl = useCallback(
     (nextTag: string[]) => {
-      const params = new URLSearchParams(searchParams.toString());
+      let newUrl;
       if (nextTag.length) {
-        params.set("tags", nextTag.join(","));
+        newUrl = formUrlQuery({
+          params: searchParams.toString(),
+          key: "tags",
+          value: nextTag.join(","),
+        });
       } else {
-        params.delete("tags");
+        newUrl = removeKeysFromUrlQuery({
+          params: searchParams.toString(),
+          keysToRemove: ["tags"],
+        });
       }
-      router.replace(`${pathname}${params.toString() ? `?${params}` : ""}`);
+
+      router.replace(newUrl);
     },
-    [searchParams, router, pathname]
+    [searchParams, router]
   );
   const clearAll = useCallback(() => {
     setSelectedCategories([]);
@@ -56,10 +65,10 @@ const NavBar = () => {
   const toggleCategory = useCallback(
     (category: string) => {
       setSelectedCategories((prev) => {
-        const has = prev.includes(category);
+        const has = prev.includes(category.toLowerCase());
         const next = has
-          ? prev.filter((c) => c !== category)
-          : [...prev, category];
+          ? prev.filter((c) => c !== category.toLowerCase())
+          : [...prev, category.toLowerCase()];
         updateUrl(next);
         return next;
       });
@@ -92,7 +101,7 @@ const NavBar = () => {
             All
           </Badge>
           {CategoryFilter.map((category) => {
-            const active = selectedCategories.includes(category);
+            const active = selectedCategories.includes(category.toLowerCase());
             return (
               <Badge
                 key={category}
@@ -100,11 +109,11 @@ const NavBar = () => {
                 aria-pressed={active}
                 tabIndex={0}
                 onClick={() => {
-                  toggleCategory(category);
+                  toggleCategory(category.toLowerCase());
                 }}
                 onKeyDown={(e) =>
                   (e.key === "Enter" || e.key === "") &&
-                  toggleCategory(category)
+                  toggleCategory(category.toLowerCase())
                 }
                 variant={active ? "active" : "default"}
               >
@@ -227,7 +236,9 @@ const NavBar = () => {
                     All
                   </Badge>
                   {CategoryFilter.map((category) => {
-                    const active = selectedCategories.includes(category);
+                    const active = selectedCategories.includes(
+                      category.toLowerCase()
+                    );
                     return (
                       <Badge
                         key={category}

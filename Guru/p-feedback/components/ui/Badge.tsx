@@ -23,12 +23,14 @@ export interface BadgeProps
     VariantProps<typeof badgeVariant> {
   icon?: boolean;
   iconSrc?: LucideIcon;
+  iconPosition?: "top" | "left";
 }
 
 export const Badge = ({
   className,
   variant,
   icon = false,
+  iconPosition,
   iconSrc = ChevronUp,
 
   ...props
@@ -38,9 +40,10 @@ export const Badge = ({
     <div
       className={cn(
         badgeVariant({ variant }),
-        className,
-        icon ? "h-[53px]" : "px-4 py-2 text-[#4661E6]",
-        " inline-flex w-fit flex-col gap-0.5 rounded-[10px]  items-center justify-center "
+        iconPosition === "top" ? "flex-col" : "flex-row",
+        icon ? "h-auto px-3 py-2" : "px-4 py-2 text-[#4661E6]",
+        " inline-flex w-fit gap-0.5 rounded-[10px]  items-center justify-center ",
+        className
       )}
       {...props}
     >

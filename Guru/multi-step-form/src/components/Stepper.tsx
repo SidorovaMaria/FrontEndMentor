@@ -4,7 +4,6 @@ import { steps } from "./data/data";
 
 const Stepper = () => {
 	const { step } = useStepStore();
-	console.log(step);
 	return (
 		<div className="flex min-h-[172px] w-full justify-center gap-4 bg-[url('/assets/images/bg-sidebar-mobile.svg')] bg-cover bg-no-repeat lg:min-h-0 lg:max-w-[274px] lg:flex-col lg:justify-normal lg:gap-8 lg:bg-[url('/assets/images/bg-sidebar-desktop.svg')] lg:bg-auto lg:px-8 lg:py-10">
 			{steps.map((item, index) => (

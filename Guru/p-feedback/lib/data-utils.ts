@@ -1,9 +1,15 @@
 export const getCountedPlannedFeedbacks = (data: ProductRequest[]) => {
+  const statuses = ["planned", "in-progress", "live"];
   const filtered = data.filter((item) => item.status !== "suggestion");
   const reduce = filtered.reduce((acc, item) => {
     acc[item.status] = (acc[item.status] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
+  statuses.forEach((status) => {
+    if (!(status in reduce)) {
+      reduce[status] = 0;
+    }
+  });
   return reduce;
 };
 export const getStatusColor = (status: string) => {

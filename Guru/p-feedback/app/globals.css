@@ -45,7 +45,8 @@ body {
     @apply text-[15px] leading-[22px];
   }
   p.small,
-  span.small {
+  span.small,
+  label.small {
     @apply font-semibold text-[13px] leading-[19px];
   }
 }

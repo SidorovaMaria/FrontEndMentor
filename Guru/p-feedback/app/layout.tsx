@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${jost.variable}  antialiased`}>
         <main className="md:max-w-[700px] mx-auto lg:max-w-5xl  md:mt-[56px] ">
           {children}{" "}

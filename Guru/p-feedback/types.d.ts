@@ -3,6 +3,11 @@ interface Reply {
   replyingTo: User.username;
   user: User;
 }
+const statusTypes = ["planned", "in-progress", "live", "suggestion"] as const;
+type StatusType = (typeof statusTypes)[number];
+const CategoryFilter = ["UI", "UX", "Enhancement", "Bug", "Feature"] as const;
+type CategoryType = (typeof CategoryFilter)[number];
+
 interface User {
   image: string;
   name: string;
@@ -22,7 +27,7 @@ interface ProductRequest {
   title: string;
   category: string;
   upvotes: number;
-  status: string;
+  status: StatusType;
   description: string;
-  comments?: string[] | undefined;
+  comments?: Comment[] | undefined;
 }

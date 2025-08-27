@@ -8,7 +8,7 @@ const SelectGroup = SelectPrimitive.Group;
 const SelectValue = SelectPrimitive.Value;
 
 const SelectTriggerVariants = cva(
-  " rounded-[5px] border border-transparent  h-12 ",
+  " rounded-[5px] border border-transparent  h-12 font-bold ring-0!",
   {
     variants: {
       variant: {
@@ -31,7 +31,7 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex cursor-default justify-between items-center gap-6 group  transition-all duration-300 ease-in disabled:cursor-not-allowed disabled:opacity-50 pl-6 pr-3 py-3",
+      "flex cursor-default justify-between items-center gap-6 group  transition-all duration-300 ease-in disabled:cursor-not-allowed disabled:opacity-50 pl-6 pr-3 py-3 outline-none",
       variant && SelectTriggerVariants({ variant }),
       className
     )}

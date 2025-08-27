@@ -12,10 +12,9 @@ import {
 import data from "../data/data.json";
 import { getCountedPlannedFeedbacks } from "@/lib/data-utils";
 import NavBar from "@/components/ui/navbar/NavBar";
-export default async function Home({ params }: { params: { tags: string } }) {
-  const searchParams = new URLSearchParams(
-    typeof window !== "undefined" ? window.location.search : ""
-  );
+import FilterBar from "@/components/ui/FilterBar";
+import Requests from "@/components/Requests";
+export default async function Home() {
   return (
     <main
       className="
@@ -24,9 +23,11 @@ export default async function Home({ params }: { params: { tags: string } }) {
       <header>
         <NavBar />
       </header>
-      <section>
-        <h1>Feedback</h1>
-        <p>Here is the feedback section.</p>
+      <section className="w-full flex flex-col gap-8 md:gap-6 ">
+        <FilterBar />
+        <div className="mx-6 md:mx-0">
+          <Requests />
+        </div>
       </section>
     </main>
   );
