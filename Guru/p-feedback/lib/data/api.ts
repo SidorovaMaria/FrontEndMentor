@@ -1,7 +1,6 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { uuid } from "zod";
 
 const BASE = process.env.NEXT_PUBLIC_JSON_SERVER_URL ?? "http://localhost:3001";
 

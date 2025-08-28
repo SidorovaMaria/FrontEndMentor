@@ -63,8 +63,12 @@ const FilterBar = ({ requests }: { requests: ProductRequest[] }) => {
               placeholder="Sort By"
               className="placeholder:font-bold"
             >
-              <span className="text-[#F2F4FE]! font-normal">Sort by:</span>{" "}
-              {sortBy.label}
+              <span className="text-[#F2F4FE]! font-normal whitespace-nowrap">
+                Sort by:{" "}
+                <span className="whitespace-nowrap font-bold">
+                  {sortBy.label}
+                </span>
+              </span>{" "}
             </SelectValue>
           </SelectTrigger>
           <SelectContent>
@@ -76,7 +80,11 @@ const FilterBar = ({ requests }: { requests: ProductRequest[] }) => {
           </SelectContent>
         </Select>
       </div>
-      <Button variant="pink" onClick={() => router.push("/feedback/new")}>
+      <Button
+        variant="pink"
+        onClick={() => router.push("/feedback/new")}
+        className="whitespace-nowrap"
+      >
         + Add Feedback
       </Button>
     </div>

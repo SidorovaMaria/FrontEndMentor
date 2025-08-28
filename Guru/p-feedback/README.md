@@ -1,36 +1,128 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend Mentor - Product feedback APP ( Next.js + json-server )
 
-## Getting Started
+This is a solution to the [Product feedback app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-feedback-app-wbvUYqjR6).
+A full CRUD mock of the Product Feedback app. Next.js (App Router) on the UI, `json-server` as a local API. Zero backend ceremony; maximum iteration speed.
 
-First, run the development server:
+## Table of contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- [Overview](#overview)
+- [Tech Stack](#tech-stack)
+- [Local Setup](#local-setup)
+- [Data Model](#data-model)
+- [Screenshot](#screenshot)
+- [Links](#links)
+- [What I Learned](#what-i-learned)
+
+## Overview
+
+Users can:
+
+- Enjoy responsive layouts + keyboard-friendly UI
+- Create, read, update, and delete feedback requests
+- See hover states for all interactive elements on the page
+- Receive form validations when trying to create/edit feedback requests
+- Sort suggestions by most/least upvotes and most/least comments
+- Filter suggestions by category
+- Add comments and replies to a product feedback request
+
+### Tech Stack
+
+- **Next.js 14+** (App Router, RSC, Turbopack)
+- **TypeScript**
+- **Tailwind**
+- **Radix UI** (accessible primitives: Select,Button)
+- **json-server** (mock REST API)
+
+### Local Setup
+
+`````bash
+# 1) install deps
+npm i
+
+# 2) copy env and adjust if needed
+cp .env.example .env.local
+
+# 3) run dev UI + mock API together
+npm run start
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Data Model
+````json
+{
+  "currentUser": {
+    "image": "./assets/user-images/image-zena.jpg",
+    "name": "Zena Kelley",
+    "username": "velvetround",
+  },
+  "productRequests": [
+    {
+      "id": "1",
+      "title": "Add tags for solutions",
+      "category": "enhancement",
+      "upvotes": 112,
+      "status": "suggestion",
+      "description": "Easier to search...",
+      "comments": [],
+      "upvotedByCurrentUser": false,
+    }
+  ]
+}
+`````
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Screenshot
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+![Desktop](./public/assets/screenshots/desktop_screenshot.png)
+![Tablet](./public/assets/screenshots/tablet_screenshot.png)
+![Phone](./public/assets/screenshots/phone_screenshot.png)
 
-## Learn More
+### Links
 
-To learn more about Next.js, take a look at the following resources:
+- Github URL: [Add solution URL here](https://github.com/SidorovaMaria/FrontEndMentor/tree/main/Guru/p-feedback)
+- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### What I learned
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- 🧩 Advanced Reusable UI components
+  Practiced creating flexible, theme-aware components (like Button, Badge, Select) using shadcn/ui patterns combined with Radix UI primitives. Learned how to wire up variants with class-variance-authority (CVA) for consistent styling.
+- 🗄️ Mock APIs with json-server
+  Built a full CRUD layer with json-server as a backend stand-in. Learned how to properly use PATCH vs PUT, keep data flat (avoiding nested { item: {…} } bugs), and reset the DB quickly with seed data.
+- ♿ Accessibility best practices
+  Added aria-labelledby, aria-describedby, aria-live, and aria-pressed for dynamic elements.
+  Made tabs keyboard-navigable (Arrow keys + Home/End).
+  Ensured Radix Select works with keyboard (Up/Down/Enter/Escape).
+  Preserved focus styles instead of removing outlines.
+- Combined Next.js dev server + json-server with concurrently so both run in one command.
 
-## Deploy on Vercel
+I little code snippet I'm proud of:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Istead of repeating fetch logic everywhere, it centralizes API calls into one clean resubale function. Enforces type safety with generic <T>. Also gives me instant feedback when something goes wrong. Writing this taught me how to think about clean abstractions and making my codebase easier to scale.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```ts
+// A reusable, strongly typed fetch wrapper I'm proud of
+async function api<T>(url: string, init?: RequestInit): Promise<T> {
+  const res = await fetch(url, init);
+  if (!res.ok)
+    throw new Error(`${init?.method ?? "GET"} ${url} failed: ${res.status}`);
+  return (await res.json()) as T;
+}
+```
+
+### Useful resources
+
+- [Radix UI – Select](https://www.radix-ui.com/themes/docs/components/select)  
+  Helped me set up accessible, keyboard-navigable dropdowns with great customization options.
+
+- [Radix UI – Badge](https://www.radix-ui.com/themes/docs/components/badge)  
+  I used this to build reusable and styled badges, which improved consistency across my app.
+
+- [Radix UI – Button](https://www.radix-ui.com/themes/docs/components/button)  
+  Great reference for building accessible, flexible buttons with different states.
+
+- [json-server](https://github.com/typicode/json-server)  
+  Super useful for mocking a backend API and practicing CRUD operations without needing a full server setup.
+
+## Author
+
+- Website - [Maria Sidorova](https://portfolio-6dft.vercel.app)
+- Frontend Mentor - [@SidorovaMaria](https://www.frontendmentor.io/profile/SidorovaMaria)
