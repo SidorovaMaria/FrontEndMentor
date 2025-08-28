@@ -118,3 +118,15 @@ export function UIStatusToStorage(status: UIStatusType): StatusType {
       return "suggestion";
   }
 }
+export function storageToUIStatus(status: StatusType): UIStatusType {
+  switch (status) {
+    case "planned":
+      return "Planned";
+    case "in-progress":
+      return "In Progress";
+    case "live":
+      return "Live";
+    case "suggestion":
+      return "Suggestion";
+  }
+}

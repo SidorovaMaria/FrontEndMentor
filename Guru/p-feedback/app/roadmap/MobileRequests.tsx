@@ -17,6 +17,7 @@ const RoadMapRequests = async ({ status }: { status: StatusType }) => {
   const sorted = statusRequests.sort((a, b) => {
     return b.upvotes - a.upvotes;
   });
+
   return (
     <section
       aria-labelledby={`roadmap-${status}`}
@@ -31,6 +32,15 @@ const RoadMapRequests = async ({ status }: { status: StatusType }) => {
         </h3>
         <p className="text-[13px] text-[#647196]">
           {statusDescription[status] ?? "No description available."}
+        </p>
+        {/* SR */}
+        <p
+          id={`roadmap-${status}-count`}
+          aria-live="polite"
+          className="sr-only"
+        >
+          {sorted.length} request{sorted.length !== 1 ? "s" : ""} with status{" "}
+          {status}
         </p>
       </div>
       {sorted.length === 0 && (
@@ -53,11 +63,13 @@ const RoadMapRequests = async ({ status }: { status: StatusType }) => {
             No requests with status &quot;{status}&quot; found.
           </p>
           <Button variant="pink" type="button" aria-label="Add Feedback">
-            <Link href="/feedback/new">+ Add Feedback</Link>
+            <Link href="/feedback/new" aria-label="Add new Feedback">
+              + Add Feedback
+            </Link>
           </Button>
         </div>
       )}
-      <ul className="flex flex-col gap-4 mt-6">
+      <ul className="flex flex-col gap-4 mt-6" aria-live="polite">
         {sorted.map((request) => (
           <RoadMapItem key={request.id} request={request} />
         ))}

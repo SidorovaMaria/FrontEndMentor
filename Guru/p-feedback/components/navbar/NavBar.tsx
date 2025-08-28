@@ -154,7 +154,12 @@ const NavBar = ({ planned }: { planned: Record<string, number> }) => {
           </div>
           <AnimatePresence mode="wait" initial={false}>
             {!openMenu ? (
-              <motion.div
+              <motion.button
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === "") {
+                    setOpenMenu(!openMenu);
+                  }
+                }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1, rotate: 180 }}
                 exit={{ opacity: 0 }}
@@ -164,9 +169,14 @@ const NavBar = ({ planned }: { planned: Record<string, number> }) => {
                   onClick={() => setOpenMenu(!openMenu)}
                   className="cursor-pointer"
                 />
-              </motion.div>
+              </motion.button>
             ) : (
-              <motion.div
+              <motion.button
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === "") {
+                    setOpenMenu(!openMenu);
+                  }
+                }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -176,7 +186,7 @@ const NavBar = ({ planned }: { planned: Record<string, number> }) => {
                   onClick={() => setOpenMenu(!openMenu)}
                   className="cursor-pointer"
                 />
-              </motion.div>
+              </motion.button>
             )}
           </AnimatePresence>
 

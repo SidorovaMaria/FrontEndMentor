@@ -4,11 +4,11 @@ import { Slot } from "@radix-ui/react-slot";
 import { cn } from "@/lib";
 import { ChevronLeft } from "lucide-react";
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 rounded-xl transition-colors duration-200 focus:outline-none focus:ring-0 disabled:opacity-50 rounded-[10px] cursor-pointer text-white text-sm font-bold",
+  "inline-flex items-center justify-center gap-2 rounded-xl transition-colors duration-200 focus:ring-2 focus:ring-white outline-none disabled:opacity-50 rounded-[10px] cursor-pointer text-white text-sm font-bold",
   {
     variants: {
       variant: {
-        pink: "bg-pink  hover:bg-[#c75af6]",
+        pink: "bg-pink  hover:bg-[#c75af6] ",
         blue: "bg-blue  hover:bg-[#7C91F9]",
         darkblue: "bg-blue-300  hover:bg-[#656EA3]",
         orange: "bg-[#D73737]  hover:bg-[#E98888]",

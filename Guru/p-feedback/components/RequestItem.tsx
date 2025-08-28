@@ -15,7 +15,7 @@ const RequestItem = ({ request }: { request: ProductRequest }) => {
   const upvote = async () => {
     await upvoteRequest({ requestId: request.id });
   };
-  console.log(request.upvotedByCurrentUser);
+
   return (
     <li
       className="bg-white rounded-[10px] p-6 text-[#3A4374] flex flex-col md:flex-row md:items-center  gap-4 md:gap-10 group  cursor-pointer"
