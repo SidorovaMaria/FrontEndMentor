@@ -18,7 +18,7 @@ export default async function Home({
   const plannedFeedback = await getCountedPlannedFeedbacks();
 
   return (
-    <main
+    <div
       className="a
     flex flex-col lg:flex-row md:gap-10 lg:gap-[30px]"
     >
@@ -31,6 +31,6 @@ export default async function Home({
           <Requests requests={requests} />
         </div>
       </section>
-    </main>
+    </div>
   );
 }

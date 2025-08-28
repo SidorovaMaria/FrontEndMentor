@@ -142,7 +142,7 @@ const NavBar = ({ planned }: { planned: Record<string, number> }) => {
         </section>
       </nav>
       <>
-        <header className="h-[72px] radial-gradient flex items-center justify-between px-6 text-white relative overflow-hidden md:hidden">
+        <nav className="h-[72px] radial-gradient flex items-center justify-between px-6 text-white relative overflow-hidden md:hidden">
           <div className="flex gap-0 flex-col relative z-10">
             <h1
               role="h1"
@@ -155,6 +155,7 @@ const NavBar = ({ planned }: { planned: Record<string, number> }) => {
           <AnimatePresence mode="wait" initial={false}>
             {!openMenu ? (
               <motion.button
+                type="button"
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === "") {
                     setOpenMenu(!openMenu);
@@ -172,6 +173,7 @@ const NavBar = ({ planned }: { planned: Record<string, number> }) => {
               </motion.button>
             ) : (
               <motion.button
+                type="button"
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === "") {
                     setOpenMenu(!openMenu);
@@ -192,7 +194,7 @@ const NavBar = ({ planned }: { planned: Record<string, number> }) => {
 
           <span className="absolute bg-[#fbb57a] rounded-full w-[192px] h-[192px] top-2/4 left-5/6 blur-xl z-5" />
           <span className="absolute bg-[#7AD8FB] rounded-full w-[192px] h-[192px] bottom-2/4 right-5/6 blur-xl z-5" />
-        </header>
+        </nav>
         <AnimatePresence>
           {openMenu && (
             <>
