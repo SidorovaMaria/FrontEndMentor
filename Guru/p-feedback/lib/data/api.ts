@@ -2,7 +2,10 @@
 
 import { revalidatePath } from "next/cache";
 
-const BASE = process.env.NEXT_PUBLIC_JSON_SERVER_URL ?? "http://localhost:3001";
+const BASE =
+  process.env.JSON_SERVER_URL ?? // server-only (Vercel env)
+  process.env.NEXT_PUBLIC_JSON_SERVER_URL ?? // fallback if you ever fetch from client
+  "http://localhost:3001";
 
 async function api<T>(url: string, init?: RequestInit): Promise<T> {
   const res = await fetch(url, init);

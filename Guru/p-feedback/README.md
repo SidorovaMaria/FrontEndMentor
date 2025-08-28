@@ -72,14 +72,13 @@ npm run start
 
 ### Screenshot
 
-![Desktop](./public/assets/screenshots/desktop_screenshot.png)
-![Tablet](./public/assets/screenshots/tablet_screenshot.png)
-![Phone](./public/assets/screenshots/phone_screenshot.png)
+<img src="./public/assets/screenshots/desktop_screenshot.png" alt="Desktop" width="600" />
+<img src="./public/assets/screenshots/tablet_screenshot.png" alt="Tablet" width="400" />
+<img src="./public/assets/screenshots/phone_screenshot.png" alt="Phone" width="300" />
 
 ### Links
 
 - Github URL: [Add solution URL here](https://github.com/SidorovaMaria/FrontEndMentor/tree/main/Guru/p-feedback)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
 
 ### What I learned
 
