@@ -1,0 +1,14 @@
+{
+  "name": "guru-json-server",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "json-server --host 0.0.0.0 --port $PORT --watch data/data.json"
+  },
+  "dependencies": {
+    "json-server": "^0.17.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
