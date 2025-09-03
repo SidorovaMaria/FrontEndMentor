@@ -24,7 +24,7 @@ Users should be able to:
 ![](./screenshot.jpg)
 
 ### Links
-- Live Site URL: [Vercel](https://htmlpreview.github.io/?https://github.com/SidorovaMaria/FrontEndMentor/blob/main/Newbie/social-links-profile-main/index.html)
+- Live Site URL: [Github preview](https://htmlpreview.github.io/?https://github.com/SidorovaMaria/FrontEndMentor/blob/main/Newbie/social-links-profile-main/index.html)
 
 ## My process
 
