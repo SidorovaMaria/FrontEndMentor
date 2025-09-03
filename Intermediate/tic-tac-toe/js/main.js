@@ -5,6 +5,7 @@ import {
   ties,
   WIN_COMBINATIONS,
 } from "./data.js";
+
 import {
   createGameScreen,
   createNewGame,
