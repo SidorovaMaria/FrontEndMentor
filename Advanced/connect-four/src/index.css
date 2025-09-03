@@ -2,59 +2,62 @@
 
 /* Design System */
 @font-face {
-	font-family: "Space Grotesk";
-	src: url("/assets/fonts/SpaceGrotesk-VariableFont_wght.ttf")
-		format("truetype");
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk-VariableFont_wght.ttf")
+    format("truetype");
 }
 body,
 html {
-	font-family: "Space Grotesk", sans-serif;
-	font-weight: bold;
-	background-color: #5c2dd5;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: bold;
+  background-color: #5c2dd5;
+}
+button {
+  cursor: pointer;
 }
 
 @theme {
-	--color-black: #000000;
-	--color-purple-darker: #5c2dd5;
-	--color-purple: #7945ff;
-	--color-pink: #fd6687;
-	--color-yellow: #ffce67;
-	--color-white: #ffffff;
-	--text-56: 56px;
-	--radius-20: 20px;
+  --color-black: #000000;
+  --color-purple-darker: #5c2dd5;
+  --color-purple: #7945ff;
+  --color-pink: #fd6687;
+  --color-yellow: #ffce67;
+  --color-white: #ffffff;
+  --text-56: 56px;
+  --radius-20: 20px;
 }
 @layer components {
-	.text-L {
-		@apply text-56 leading-[71px];
-	}
-	.text-M {
-		@apply text-2xl leading-[31px];
-	}
-	.text-S {
-		@apply text-xl leading-6.5;
-	}
-	.text-XS {
-		@apply text-base leading-[21px];
-	}
-	.text-body {
-		@apply text-base font-medium leading-[21px];
-	}
-	.btn-menu-header {
-		@apply uppercase text-white bg-purple-darker rounded-[20px] w-[108px] h-10 flex items-center justify-center hover:bg-pink;
-	}
-	.solid-shadow-L {
-		box-shadow: 0px 10px 0px 0px #000000;
-	}
-	.solid-shadow-L:hover {
-		box-shadow: 0px 10px 0px 0px #5c2dd5;
-	}
-	.solid-shadow-S {
-		box-shadow: 0px 5px 0px 0px #000000;
-	}
-	.solid-shadow-S:hover {
-		box-shadow: 0px 5px 0px 0px #5c2dd5;
-	}
-	.rules-li {
-		@apply text-base font-medium leading-[21px] opacity-[0.66];
-	}
+  .text-L {
+    @apply text-56 leading-[71px];
+  }
+  .text-M {
+    @apply text-2xl leading-[31px];
+  }
+  .text-S {
+    @apply text-xl leading-6.5;
+  }
+  .text-XS {
+    @apply text-base leading-[21px];
+  }
+  .text-body {
+    @apply text-base font-medium leading-[21px];
+  }
+  .btn-menu-header {
+    @apply uppercase text-white bg-purple-darker rounded-[20px] w-[108px] h-10 flex items-center justify-center hover:bg-pink;
+  }
+  .solid-shadow-L {
+    box-shadow: 0px 10px 0px 0px #000000;
+  }
+  .solid-shadow-L:hover {
+    box-shadow: 0px 10px 0px 0px #5c2dd5;
+  }
+  .solid-shadow-S {
+    box-shadow: 0px 5px 0px 0px #000000;
+  }
+  .solid-shadow-S:hover {
+    box-shadow: 0px 5px 0px 0px #5c2dd5;
+  }
+  .rules-li {
+    @apply text-base font-medium leading-[21px] opacity-[0.66];
+  }
 }
