@@ -1,62 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Google font Overpass -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
     <script defer src="./js/main.js"></script>
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/main.css" />
     <title>Frontend Mentor | Interactive rating component</title>
-</head>
+  </head>
 
-<body>
-    <main class="card review">
-        <div class="icon">
-            <img src="./images/icon-star.svg" alt="Star icon">
-        </div>
-        <section class="content">
-            <h2 class="heading-L">How did we do?</h2>
-            <p class="feedback text-body">
-                Please let us know how we did with your support request. All feedback is appreciated
-                to help us improve our offering!
-            </p>
+  <body>
+    <section class="card review">
+      <div class="icon">
+        <img src="./images/icon-star.svg" alt="Star icon" />
+      </div>
+      <section class="content">
+        <h2 class="heading-L">How did we do?</h2>
+        <p class="feedback text-body">
+          Please let us know how we did with your support request. All feedback
+          is appreciated to help us improve our offering!
+        </p>
 
-            <form>
-                <div class="ratings">
-                    <button value="1" type="button" name="rating-value" class="rating">1</button>
-                    <button value="2" type="button" name="rating-value" class="rating">2</button>
-                    <button value="3" type="button" name="rating-value" class="rating ">3</button>
-                    <button value="4" type="button" name="rating-value" class="rating">4</button>
-                    <button value="5" type="button" name="rating-value" class="rating">5</button>
-                </div>
-            </form>
-            <button type="submit">Submit</button>
-        </section>
-    </main>
-    <main class="card result hide">
-        <img src="./images/illustration-thank-you.svg" alt="Illustration of thank you message" class="img-thank-you" />
+        <form>
+          <div class="ratings">
+            <button value="1" type="button" name="rating-value" class="rating">
+              1
+            </button>
+            <button value="2" type="button" name="rating-value" class="rating">
+              2
+            </button>
+            <button value="3" type="button" name="rating-value" class="rating">
+              3
+            </button>
+            <button value="4" type="button" name="rating-value" class="rating">
+              4
+            </button>
+            <button value="5" type="button" name="rating-value" class="rating">
+              5
+            </button>
+          </div>
+        </form>
+        <button type="submit">Submit</button>
+      </section>
+    </section>
+    <section class="card result hide">
+      <img
+        src="./images/illustration-thank-you.svg"
+        alt="Illustration of thank you message"
+        class="img-thank-you"
+      />
 
-        <aside>
-            <p class="selected-rating" aria-live="polite">
-                You selected <span id="chosen-rating"></span> out of 5
-            </p>
-        </aside>
+      <aside>
+        <p class="selected-rating" aria-live="polite">
+          You selected
+          <span id="chosen-rating"></span>
+          out of 5
+        </p>
+      </aside>
 
-        <section class="thank-you">
-            <h1>Thank you!</h1>
-            <p class="text-body">
-                We appreciate you taking the time to give a rating. If you ever need more support, don’t hesitate to get
-                in touch!
-            </p>
-        </section>
-    </main>
-</body>
-
+      <section class="thank-you">
+        <h1>Thank you!</h1>
+        <p class="text-body">
+          We appreciate you taking the time to give a rating. If you ever need
+          more support, don’t hesitate to get in touch!
+        </p>
+      </section>
+    </section>
+  </body>
 </html>
