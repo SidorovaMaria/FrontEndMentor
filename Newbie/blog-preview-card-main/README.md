@@ -7,6 +7,7 @@ This is a solution to the [Blog preview card challenge on Frontend Mentor](https
 -   [Overview](#overview)
     -   [The challenge](#the-challenge)
     -   [Screenshot](#screenshot)
+    -   [Links](#links)
 -   [My process](#my-process)
     -   [Built with](#built-with)
     -   [Useful Resources](#useful-resources)
@@ -25,6 +26,11 @@ Users should be able to:
 ### Screenshot
 
 ![](./screenshot.jpg)
+
+### Links
+
+- Live Site URL: [Github Preview](https://htmlpreview.github.io/?https://github.com/SidorovaMaria/FrontEndMentor/blob/main/Newbie/blog-preview-card-main/index.html)
+
 
 ### Built with
 
